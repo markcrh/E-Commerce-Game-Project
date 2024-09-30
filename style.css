@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game {
+    background-color: green;
+    width: 1300px;
+    height: 935px;
+    display: inline-block;
+    position: relative;
+}
+
+#player {
+    background-color: greenyellow;
+    width: 50px;
+    height: 50px;
+}
+
+#controlPanel {
+    background-color: blue;
+    display: inline-block;
+    width: 555px;
+    height: 935px;
+    position: absolute;
+    left: 1300px;
+}
+
+#playerHealth {
+    background-color: rgba(255, 0, 0, 0.5);
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    margin: 20px;
+}
+
+#keyHolder {
+    background-color: rgba(255, 255, 0, 0.5);
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 1175px;
+}
+
+#title {
+    background-color:aqua;
+    width: 400px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 75px;
+}
+
+#controls {
+    background-color: aqua;
+    width: 400px;
+    height: 550px;
+    margin-top: 50px;
+    margin-left: 75px;
+}
+
+#authors {
+    background-color: aqua;
+    width: 400px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 75px;
+}
