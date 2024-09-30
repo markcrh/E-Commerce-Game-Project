@@ -3,8 +3,8 @@ const player = new Player (100, 100);
 const enemy = new Enemy (200, 200);
 
 
-player.insert();
-enemy.insert();
+/* player.insert();
+enemy.insert(); */
 
 
 

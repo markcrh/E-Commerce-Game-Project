@@ -4,12 +4,22 @@
     overflow: hidden;
 }
 
-#game {
-    background-color: green;
+#screen {
+    background-color: rgb(6, 70, 0);
     width: 1300px;
     height: 935px;
-    display: inline-block;
     position: relative;
+    display: inline-block;
+}
+
+#game {
+    background-color: green;
+    width: 1160px;
+    height: 795px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 70px;
 }
 
 #player {
