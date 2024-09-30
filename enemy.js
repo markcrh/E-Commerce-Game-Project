@@ -31,7 +31,6 @@ class Enemy {
       this.sprite.style.left = this.posX + "px";
     } else {
       let random = Math.floor(Math.random()*100)
-      console.log(random)
       if (random % 2 == 0){
         this.dirY = 1;
         this.dirX = 0;

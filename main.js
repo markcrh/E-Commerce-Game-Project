@@ -1,11 +1,11 @@
 const map = document.getElementById("game");
 const player = new Player (100, 100);
 const enemy = new Enemy (200, 200);
-
+const column1 = new Column (200, 200, 100, 100);
 
 /* player.insert();
 enemy.insert(); */
-
+column1.insert();
 
 
 window.addEventListener("keydown", function (event) {

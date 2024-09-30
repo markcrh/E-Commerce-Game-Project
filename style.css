@@ -22,6 +22,15 @@
     margin-left: 70px;
 }
 
+.column {
+    background-color: black;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    left: 50px;
+}
+
 #player {
     background-color: greenyellow;
     position: absolute;
