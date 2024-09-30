@@ -12,7 +12,7 @@ function addColumns() {
     let column1 = new Column(200, 200, 100, 100);
     let column2 = new Column(400, 400, 100, 100);
     let column3 = new Column(600, 600, 100, 100);
-    let column4= new Column(800, 500, 100, 100);
+    let column4 = new Column(800, 500, 100, 100);
 
     columnArr.push(column1, column2, column3, column4)
 
