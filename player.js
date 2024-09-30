@@ -24,36 +24,34 @@ class Player {
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-    if (
-      newX >= 0 &&
-      newX <= 1300 - this.width &&
-      !this.checkCollision(newX, newY)
-    ) {
+    if (newX >= 0 && newX <= 1300 - this.width && !this.checkCollision(newX, newY)) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
     }
 
-    if (
-      newY >= 0 &&
-      newY <= 935 - this.height &&
-      !this.checkCollision(newX, newY)
-    ) {
+    if (newY >= 0 && newY <= 935 - this.height && !this.checkCollision(newX, newY)) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
     }
   }
 
   checkCollision(posX, posY) {
-    if (
-      posX < column1.posX + column1.width &&
-      posY < column1.posY + column1.height &&
-      posX + this.width > column1.posX &&
-      posY + this.height > column1.posY
+    let self = this
+    let collision = columnArr.some(function(column){
+        if (
+      posX < column.posX + column.width &&
+      posY < column.posY + column.height &&
+      posX + self.width > column.posX &&
+      posY + self.height > column.posY
     ) {
       return true;
     } else {
       return false;
     }
+    })
+
+    return collision
+    
   }
 
   /* checkCollision(posX, posY) {

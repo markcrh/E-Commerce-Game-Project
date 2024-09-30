@@ -9,9 +9,7 @@ class Enemy {
     this.height = 50;
     this.speed = 3;
     this.sprite = document.createElement("div");
-    this.intervalX = setInterval(this.moveX.bind(this), 10);
-    this.intervalY = setInterval(this.moveY.bind(this), 10);
-
+    this.interval = setInterval(this.move.bind(this), 10);
   }
 
   insert() {
@@ -23,8 +21,9 @@ class Enemy {
     map.appendChild(this.sprite);
   }
 
-  moveX() {
+  move() {
     let newX = this.posX + this.speed * this.dirX;
+    let newY = this.posY + this.speed * this.dirY;
 
     if (newX >= 0 && newX <= 1300 - this.width) {
       this.posX = newX;
@@ -39,16 +38,11 @@ class Enemy {
         this.dirX = 0;
       }
     }
-  
-  }
-  moveY() {
-    let newY = this.posY + this.speed * this.dirY;
-
     if (newY >= 0 && newY <= 935 - this.height) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
     } else {
-      let random = Math.floor(Math.random()*100);
+      let random = Math.floor(Math.random() * 100);
       if (random % 2 == 0) {
         this.dirX = -1;
         this.dirY = 0;
@@ -57,5 +51,6 @@ class Enemy {
         this.dirY = 0;
       }
     }
+  
   }
 }

@@ -1,11 +1,31 @@
 const map = document.getElementById("game");
 const player = new Player (100, 100);
 const enemy = new Enemy (200, 200);
-const column1 = new Column (200, 200, 100, 100);
+
+
+let column 
+
+const columnArr = []
+
+function addColumns() {
+
+    let column1 = new Column(200, 200, 100, 100);
+    let column2 = new Column(400, 400, 100, 100);
+    let column3 = new Column(600, 600, 100, 100);
+    let column4= new Column(800, 500, 100, 100);
+
+    columnArr.push(column1, column2, column3, column4)
+
+    columnArr.forEach(function(column){
+        column.insert()
+    })
+
+}
 
  player.insert()
+ addColumns()
 //enemy.insert(); 
-column1.insert();
+//column.insert();
 
 
 window.addEventListener("keydown", function (event) {
