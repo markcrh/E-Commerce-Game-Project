@@ -9,10 +9,7 @@ class Player {
     this.height = 50;
     this.speed = 3;
     this.sprite = document.createElement("div");
-    setInterval(this.moveX.bind(this), 10);
-    setInterval(this.moveY.bind(this), 10);
-
-
+    setInterval(this.move.bind(this), 10);
   }
 
   insert() {
@@ -24,20 +21,51 @@ class Player {
     map.appendChild(this.sprite);
   }
 
-  moveX() {
+  move() {
     let newX = this.posX + this.speed * this.dirX;
-
-    if (newX >= 0 && newX <= 1300 - this.width) {
+    let newY = this.posY + this.speed * this.dirY;
+    if (
+      newX >= 0 &&
+      newX <= 1300 - this.width &&
+      !this.checkCollision(newX, newY)
+    ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
     }
-  }
-  moveY() {
-    let newY = this.posY + this.speed * this.dirY;
 
-    if (newY >= 0 && newY <= 935 - this.height) {
+    if (
+      newY >= 0 &&
+      newY <= 935 - this.height &&
+      !this.checkCollision(newX, newY)
+    ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
     }
   }
+
+  checkCollision(posX, posY) {
+    if (
+      posX < column1.posX + column1.width &&
+      posY < column1.posY + column1.height &&
+      posX + this.width > column1.posX &&
+      posY + this.height > column1.posY
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /* checkCollision(posX, posY) {
+    if (
+      posX < column1.posX + column1.width &&
+      this.posY < column1.posY + column1.height &&
+      posX + this.width > column1.posX &&
+      this.posY + this.height > column1.posY
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  } */
 }

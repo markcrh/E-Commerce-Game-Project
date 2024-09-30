@@ -3,8 +3,8 @@ const player = new Player (100, 100);
 const enemy = new Enemy (200, 200);
 const column1 = new Column (200, 200, 100, 100);
 
-/* player.insert();
-enemy.insert(); */
+ player.insert()
+//enemy.insert(); 
 column1.insert();
 
 
@@ -12,7 +12,7 @@ window.addEventListener("keydown", function (event) {
   switch (event.key.toLowerCase()) {
     case "a":
       player.dirX = -1;
-      player.moveX();
+      player.move();
       break;
 
     case "d":
@@ -21,12 +21,12 @@ window.addEventListener("keydown", function (event) {
 
     case "w":
       player.dirY = -1;
-      player.moveY();
+      player.move();
       break;
 
     case "s":
       player.dirY = 1;
-      player.moveY();
+      player.move();
       break;
 
     /* case " ":
