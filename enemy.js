@@ -1,22 +1,19 @@
-class Player {
+class Enemy {
   constructor(posX, posY) {
     this.hp = 3;
     this.posX = posX;
     this.posY = posY;
-    this.dirX = 0;
-    this.dirY = 0;
+    this.dirX = 1;
+    this.dirY = 1;
     this.width = 50;
     this.height = 50;
     this.speed = 3;
     this.sprite = document.createElement("div");
-    setInterval(this.moveX.bind(this), 10);
-    setInterval(this.moveY.bind(this), 10);
-
-
+    this.interval = setInterval(this.moveX.bind(this), 10);
   }
 
   insert() {
-    this.sprite.setAttribute("id", "player");
+    this.sprite.setAttribute("id", "enemy");
     this.sprite.style.width = this.width + "px";
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.posY + "px";
