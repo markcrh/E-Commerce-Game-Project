@@ -9,7 +9,7 @@ class Player {
     this.height = 50;
     this.speed = 3;
     this.sprite = document.createElement("div");
-    setInterval(this.move.bind(this), 10);
+    this.playerInterval = setInterval(this.move.bind(this), 10);
   }
 
   insert() {
@@ -21,50 +21,88 @@ class Player {
     map.appendChild(this.sprite);
   }
 
+  remove() {
+    map.removeChild(this.sprite);
+    clearInterval(this.playerInterval);
+
+  }
+
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-    if (newX >= 0 && newX <= 1300 - this.width && !this.checkCollision(newX, newY)) {
+    if (
+      newX >= 0 &&
+      newX <= 1160 - this.width &&
+      !this.checkColumnCollision(newX, newY)
+      && !this.checkEnemyCollision()
+    ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
-      arrow.sprite.style.left = this.posX + player.width /  2 - this.width / 2 + "px";
+      arrow.sprite.style.left =
+        this.posX + player.width / 2 - this.width / 2 + "px";
     }
 
-    if (newY >= 0 && newY <= 935 - this.height && !this.checkCollision(newX, newY)) {
+    if (
+      newY >= 0 &&
+      newY <= 795 - this.height &&
+      !this.checkColumnCollision(newX, newY)
+      && !this.checkEnemyCollision()
+    ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
     }
   }
 
-  checkCollision(posX, posY) {
-    let self = this
-    let collision = columnArr.some(function(column){
-        if (
-      posX < column.posX + column.width &&
-      posY < column.posY + column.height &&
-      posX + self.width > column.posX &&
-      posY + self.height > column.posY
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-    })
-
-    return collision
-    
+  checkColumnCollision(posX, posY) {
+    let self = this;
+    let columnCollision = columnArr.some(function (column) {
+      if (
+        posX <= column.posX + column.width &&
+        posY <= column.posY + column.height &&
+        posX + self.width >= column.posX &&
+        posY + self.height >= column.posY
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return columnCollision;
+  }
+  collisionDamage(player) {
+    let enemyCollision = enemyArr.some(function (enemy) {
+      if (
+        player.posX <= enemy.posX + enemy.width &&
+        player.posY <= enemy.posY + enemy.height &&
+        player.posX + player.width >= enemy.posX &&
+        player.posY + player.height >= enemy.posY
+      ) {
+        player.hp -= 1;
+        if (player.hp == 0) {
+          player.remove();
+        }
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return enemyCollision;
   }
 
-  /* checkCollision(posX, posY) {
-    if (
-      posX < column1.posX + column1.width &&
-      this.posY < column1.posY + column1.height &&
-      posX + this.width > column1.posX &&
-      this.posY + this.height > column1.posY
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  } */
+  checkEnemyCollision() {
+    let self = this;
+    let enemyCollision = enemyArr.some(function (enemy) {
+      if (
+        self.posX <= enemy.posX + enemy.width &&
+        self.posY <= enemy.posY + enemy.height &&
+        self.posX + self.width >= enemy.posX &&
+        self.posY + self.height >= enemy.posY
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return enemyCollision;
+  }
 }
