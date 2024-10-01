@@ -18,10 +18,10 @@ class Column {
 
 class Door {
   constructor(){
-    this.posX = 1229;
-    this.posY = 428;
+    this.posX = 1155;
+    this.posY = 348;
     this.width = 71;
-    this.height = 80;
+    this.height = 100;
     this.sprite = document.createElement("div");
   }
   insert() {
@@ -30,7 +30,7 @@ class Door {
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
-    screen.appendChild(this.sprite);
+    map.appendChild(this.sprite);
   }
 }
 

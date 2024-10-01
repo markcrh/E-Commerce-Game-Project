@@ -8,7 +8,7 @@ class Player {
     this.width = 50;
     this.height = 50;
     this.speed = 3;
-    this.lastDirection = '';
+    this.lastDirection = "";
     this.sprite = document.createElement("div");
     this.playerInterval = setInterval(this.move.bind(this), 10);
   }
@@ -25,17 +25,18 @@ class Player {
   remove() {
     map.removeChild(this.sprite);
     clearInterval(this.playerInterval);
-
   }
 
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
+    this.checkDoorCollision(newX, newY);
+
     if (
       newX >= 0 &&
       newX <= 1160 - this.width &&
-      !this.checkColumnCollision(newX, newY)
-      && !this.checkEnemyCollision()
+      !this.checkColumnCollision(newX, newY) &&
+      !this.checkEnemyCollision()
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
@@ -45,8 +46,8 @@ class Player {
     if (
       newY >= 0 &&
       newY <= 795 - this.height &&
-      !this.checkColumnCollision(newX, newY)
-      && !this.checkEnemyCollision()
+      !this.checkColumnCollision(newX, newY) &&
+      !this.checkEnemyCollision()
     ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
@@ -104,5 +105,17 @@ class Player {
       }
     });
     return enemyCollision;
+  }
+
+  checkDoorCollision(posX, posY) {
+    if (
+      this.posX <= door.posX + door.width &&
+      this.posY <= door.posY + door.height &&
+      this.posX + this.width >= door.posX &&
+      this.posY + this.height >= door.posY
+    ) {
+      window.alert('hey')
+      return true;
+    }
   }
 }

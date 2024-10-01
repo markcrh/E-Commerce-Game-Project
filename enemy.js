@@ -3,11 +3,11 @@ class Enemy {
     this.hp = 3;
     this.posX = posX;
     this.posY = posY;
-    this.dirX = 1;
+    this.dirX = 0;
     this.dirY = 0;
     this.width = 50;
     this.height = 50;
-    this.speed = 3;
+    this.speed = 4;
     this.sprite = document.createElement("div");
     this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
