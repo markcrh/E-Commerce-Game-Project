@@ -24,13 +24,13 @@ class Player {
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-    if (newX >= 0 && newX <= 1300 - this.width && !this.checkCollision(newX, newY)) {
+    if (newX >= 0 && newX <= 1160 - this.width && !this.checkCollision(newX, newY)) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
       arrow.sprite.style.left = this.posX + player.width /  2 - this.width / 2 + "px";
     }
 
-    if (newY >= 0 && newY <= 935 - this.height && !this.checkCollision(newX, newY)) {
+    if (newY >= 0 && newY <= 795 - this.height && !this.checkCollision(newX, newY)) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
     }
