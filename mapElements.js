@@ -15,3 +15,22 @@ class Column {
     map.appendChild(this.sprite);
   }
 }
+
+class Door {
+  constructor(){
+    this.posX = 1220;
+    this.posY = 428;
+    this.width = 80;
+    this.height = 80;
+    this.sprite = document.createElement("div");
+  }
+  insert() {
+    this.sprite.setAttribute("id", "door");
+    this.sprite.style.width = this.width + "px";
+    this.sprite.style.height = this.height + "px";
+    this.sprite.style.top = this.posY + "px";
+    this.sprite.style.left = this.posX + "px";
+    screen.appendChild(this.sprite);
+  }
+}
+

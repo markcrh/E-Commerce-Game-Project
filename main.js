@@ -1,11 +1,13 @@
 const map = document.getElementById("game");
-const player = new Player (150, 150);
+const screen = document.getElementById("screen")
+const player = new Player (50, 700);
 const enemy = new Enemy (200, 200);
-const arrow = new Arrow(150, 150);
+const arrow = new Arrow(50, 700);
+const door = new Door();
 
 
 
-let column 
+let column; 
 
 const columnArr = []
 
@@ -28,11 +30,10 @@ function addColumns() {
 
 }
 
- player.insert()
- addColumns()
-//enemy.insert(); 
-//column.insert();
 player.insert();
+addColumns();
+door.insert();
+//enemy.insert();
 //enemy.insert();
 //arrow.insert();
 
@@ -46,7 +47,7 @@ window.addEventListener("keydown", function (event) {
 
     case "d":
       player.dirX = 1;
-      player.moveX();                                                                                                                                                                                                                                                                                                                                                                     
+      player.move();                                                                                                                                                                                                                                                                                                                                                                     
       break;
 
     case "w":
