@@ -11,12 +11,16 @@ const columnArr = []
 
 function addColumns() {
 
-    let column1 = new Column(200, 200, 100, 100);
-    let column2 = new Column(400, 400, 100, 100);
-    let column3 = new Column(600, 600, 100, 100);
-    let column4 = new Column(800, 500, 100, 100);
+    let column1 = new Column(200, 130, 100, 100);
+    let column2 = new Column(200, 348, 100, 100);
+    let column3 = new Column(200, 565, 100, 100);
+    let column4 = new Column(530, 240, 100, 100);
+    let column5 = new Column(530, 460, 100, 100);
+    let column6 = new Column(860, 130, 100, 100);
+    let column7 = new Column(860, 348, 100, 100);
+    let column8 = new Column(860, 565, 100, 100);
 
-    columnArr.push(column1, column2, column3, column4)
+    columnArr.push(column1, column2, column3, column4, column5, column6, column7, column8)
 
     columnArr.forEach(function(column){
         column.insert()
@@ -29,8 +33,8 @@ function addColumns() {
 //enemy.insert(); 
 //column.insert();
 player.insert();
-enemy.insert();
-arrow.insert();
+//enemy.insert();
+//arrow.insert();
 
 
 window.addEventListener("keydown", function (event) {
