@@ -2,7 +2,6 @@ const map = document.getElementById("game");
 const screen = document.getElementById("screen")
 const player = new Player (50, 700);
 const enemy = new Enemy (200, 200);
-const arrow = new Arrow(50, 700);
 const door = new Door();
 
 
@@ -30,39 +29,47 @@ function addColumns() {
 
 }
 
+function spawnArrow () {
+  const arrow = new Arrow();
+  arrow.insert();
+}
+
 player.insert();
 addColumns();
 door.insert();
 //enemy.insert();
 //enemy.insert();
-//arrow.insert();
 
 
 window.addEventListener("keydown", function (event) {
   switch (event.key.toLowerCase()) {
     case "a":
       player.dirX = -1;
+      player.lastDirection = "left"
       player.move();
       break;
 
     case "d":
       player.dirX = 1;
+      player.lastDirection = "right"
       player.move();                                                                                                                                                                                                                                                                                                                                                                     
       break;
 
     case "w":
       player.dirY = -1;
+      player.lastDirection = "up"
       player.move();
       break;
 
     case "s":
       player.dirY = 1;
+      player.lastDirection = "down"
       player.move();
       break;
 
-    /* case " ":
-      spawnBullets();
-      break; */
+    case " ":
+      spawnArrow()
+      break;
   }
 });
 
@@ -81,12 +88,9 @@ window.addEventListener("keyup", function (event) {
       break;
 
     case "s":
-      player.dirY =0;
+      player.dirY = 0;
       break;
 
-    /* case " ":
-      spawnBullets();
-      break; */
   }
 });
 

@@ -18,9 +18,9 @@ class Column {
 
 class Door {
   constructor(){
-    this.posX = 1220;
+    this.posX = 1229;
     this.posY = 428;
-    this.width = 80;
+    this.width = 71;
     this.height = 80;
     this.sprite = document.createElement("div");
   }

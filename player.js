@@ -8,6 +8,7 @@ class Player {
     this.width = 50;
     this.height = 50;
     this.speed = 3;
+    this.lastDirection = '';
     this.sprite = document.createElement("div");
     setInterval(this.move.bind(this), 10);
   }
@@ -27,7 +28,6 @@ class Player {
     if (newX >= 0 && newX <= 1160 - this.width && !this.checkCollision(newX, newY)) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
-      arrow.sprite.style.left = this.posX + player.width /  2 - this.width / 2 + "px";
     }
 
     if (newY >= 0 && newY <= 795 - this.height && !this.checkCollision(newX, newY)) {
