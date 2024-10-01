@@ -39,8 +39,7 @@ class Player {
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
-      arrow.sprite.style.left =
-        this.posX + player.width / 2 - this.width / 2 + "px";
+      this.posX + player.width / 2 - this.width / 2 + "px";
     }
 
     if (

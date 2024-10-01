@@ -11,6 +11,17 @@ let column;
 const columnArr = []
 const enemyArr = []
 
+function addEnemy() {
+  let enemy1 = new Enemy(100, 100)
+  let enemy2 = new Enemy(300, 120);
+
+  enemyArr.push(enemy1, enemy2)
+
+  enemyArr.forEach(function (enemy) {
+    enemy.insert()
+  })
+}
+
 function addColumns() {
 
     let column1 = new Column(200, 130, 100, 100);
@@ -35,11 +46,10 @@ function spawnArrow () {
   arrow.insert();
 }
 
+addEnemy()
 player.insert();
 addColumns();
 door.insert();
-//enemy.insert();
-//enemy.insert();
 
 
 window.addEventListener("keydown", function (event) {
