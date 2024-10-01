@@ -48,6 +48,7 @@ function spawnArrow () {
 
 addEnemy()
 player.insert();
+let checkEnemyCollision = setInterval(player.collisionDamage, 100, player)
 addColumns();
 door.insert();
 
