@@ -44,7 +44,7 @@ function addColumns() {
 function spawnArrow () {
   if (player.lastDirection == "up"){
     const arrow = new Arrow(player.posX, player.posY, 0, -1 );
-    arrow.insert();
+    arrow.insert()
   } else if (player.lastDirection == "down") {
     const arrow = new Arrow(player.posX, player.posY, 0, 1);
     arrow.insert();
@@ -57,7 +57,7 @@ function spawnArrow () {
   }
 }
 
-//addEnemy()
+addEnemy()
 player.insert();
 let checkEnemyCollision = setInterval(player.collisionDamage, 100, player)
 addColumns();
@@ -91,6 +91,7 @@ window.addEventListener("keydown", function (event) {
       break;
 
     case " ":
+
       spawnArrow()
       break;
   }

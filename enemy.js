@@ -22,6 +22,11 @@ class Enemy {
     map.appendChild(this.sprite);
   }
 
+  remove() {
+    map.removeChild(this.sprite)
+    clearInterval(this.interval)
+  }
+
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
@@ -96,6 +101,20 @@ class Enemy {
     } else {
       return false;
     }
+  }
+  checkArrowCollision(posX, posY) {
+    let self = this;
+      if (
+        posX < arrow.posX + arrow.width &&
+        posY < arrow.posY + arrow.height &&
+        posX + self.width > arrow.posX &&
+        posY + self.height > arrow.posY
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    
   }
 
   /* checkOtherEnemiesCollision() {

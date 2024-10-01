@@ -40,6 +40,12 @@ class Arrow {
         this.sprite.style.top = this.posY + "px";
         map.appendChild(this.sprite);
     }
+
+    remove() {
+        map.removeChild(this.sprite)
+        clearInterval(this.interval)
+    }
+
     move() {
         let newX = this.posX + this.speed * this.dirX;
         let newY = this.posY + this.speed * this.dirY;
@@ -47,12 +53,54 @@ class Arrow {
         if (newY >= 0 && newY <= 795 - this.height){
             this.posY = newY;
             this.sprite.style.top = this.posY + "px";
+        } else {
+            this.remove()
         }
         if (newX >= 0 && newX <= 1160 - this.width) {
             this.posX = newX;
             this.sprite.style.left = this.posX + "px";
+        } else {
+            this.remove()
+        }
+        if (this.checkColumnCollision(newX, newY)){
+           this.remove()
         }
     }
+    checkColumnCollision(posX, posY) {
+        let self = this;
+        let columnCollision = columnArr.some(function (column) {
+            if (
+                posX <= column.posX + column.width &&
+                posY <= column.posY + column.height &&
+                posX + self.width >= column.posX &&
+                posY + self.height >= column.posY
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return columnCollision;
+    }
+
+   /*  checkEnemyCollision() {
+        let self = this;
+        let enemyCollision = enemyArr.some(function (enemy) {
+            if (
+                self.posX <= enemy.posX + enemy.width &&
+                self.posY <= enemy.posY + enemy.height &&
+                self.posX + self.width >= enemy.posX &&
+                self.posY + self.height >= enemy.posY
+            ) {
+                
+                self.remove()
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return enemyCollision;
+    } */
 }
 
 
