@@ -1,6 +1,8 @@
 const map = document.getElementById("game");
-const player = new Player (100, 100);
+const player = new Player (150, 150);
 const enemy = new Enemy (200, 200);
+const arrow = new Arrow(150, 150);
+
 
 
 let column 
@@ -26,6 +28,9 @@ function addColumns() {
  addColumns()
 //enemy.insert(); 
 //column.insert();
+player.insert();
+enemy.insert();
+arrow.insert();
 
 
 window.addEventListener("keydown", function (event) {
@@ -37,6 +42,7 @@ window.addEventListener("keydown", function (event) {
 
     case "d":
       player.dirX = 1;
+      player.moveX();                                                                                                                                                                                                                                                                                                                                                                     
       break;
 
     case "w":

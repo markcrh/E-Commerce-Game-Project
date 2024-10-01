@@ -27,6 +27,7 @@ class Player {
     if (newX >= 0 && newX <= 1300 - this.width && !this.checkCollision(newX, newY)) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
+      arrow.sprite.style.left = this.posX + player.width /  2 - this.width / 2 + "px";
     }
 
     if (newY >= 0 && newY <= 935 - this.height && !this.checkCollision(newX, newY)) {

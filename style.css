@@ -47,6 +47,12 @@
     left: 150px;
 }
 
+.arrow {
+    position: absolute;
+    background-color: black;
+}
+
+
 #controlPanel {
     background-color: blue;
     display: inline-block;
