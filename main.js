@@ -42,11 +42,22 @@ function addColumns() {
 }
 
 function spawnArrow () {
-  const arrow = new Arrow();
-  arrow.insert();
+  if (player.lastDirection == "up"){
+    const arrow = new Arrow(player.posX, player.posY, 0, -1 );
+    arrow.insert();
+  } else if (player.lastDirection == "down") {
+    const arrow = new Arrow(player.posX, player.posY, 0, 1);
+    arrow.insert();
+  } else if (player.lastDirection == "right") {
+    const arrow = new Arrow(player.posX, player.posY, 1, 0);
+    arrow.insert();
+  } else if (player.lastDirection == "left") {
+    const arrow = new Arrow(player.posX, player.posY, -1, 0);
+    arrow.insert();
+  }
 }
 
-addEnemy()
+//addEnemy()
 player.insert();
 let checkEnemyCollision = setInterval(player.collisionDamage, 100, player)
 addColumns();

@@ -1,11 +1,14 @@
 class Arrow {
-    constructor() {
+    constructor(posX, posY, dirX, dirY) {
         this.height = 20;
         this.width = 5;
-        this.posY = 0;
-        this.posX = 0;
-        this.speed = 3;
+        this.posY = posY;
+        this.posX = posX;
+        this.dirY = dirY;
+        this.dirX = dirX;
+        this.speed = 10;
         this.sprite = document.createElement("div");
+        this.interval = setInterval(this.move.bind(this), 20)
     }
 
     insert() {
@@ -36,11 +39,20 @@ class Arrow {
         this.sprite.style.left = this.posX + "px";
         this.sprite.style.top = this.posY + "px";
         map.appendChild(this.sprite);
-
-
-
     }
-
+    move() {
+        let newX = this.posX + this.speed * this.dirX;
+        let newY = this.posY + this.speed * this.dirY;
+        
+        if (newY >= 0 && newY <= 795 - this.height){
+            this.posY = newY;
+            this.sprite.style.top = this.posY + "px";
+        }
+        if (newX >= 0 && newX <= 1160 - this.width) {
+            this.posX = newX;
+            this.sprite.style.left = this.posX + "px";
+        }
+    }
 }
 
 
