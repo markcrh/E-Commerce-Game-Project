@@ -8,6 +8,7 @@ class Player {
     this.width = 50;
     this.height = 50;
     this.speed = 3;
+    this.lastDirection = '';
     this.sprite = document.createElement("div");
     this.playerInterval = setInterval(this.move.bind(this), 10);
   }
