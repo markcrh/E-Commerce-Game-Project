@@ -31,6 +31,15 @@
     left: 50px;
 }
 
+#door {
+    background-color: rgb(114, 17, 17);
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50px;
+    left: 50px;
+}
+
 #player {
     background-color: greenyellow;
     position: absolute;
@@ -46,6 +55,12 @@
     height: 50px;
     left: 150px;
 }
+
+.arrow {
+    position: absolute;
+    background-color: rgb(31, 29, 29);
+}
+
 
 #controlPanel {
     background-color: blue;
