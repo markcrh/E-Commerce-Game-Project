@@ -31,6 +31,6 @@ class Door {
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
-  }
+s  }
 }
 
