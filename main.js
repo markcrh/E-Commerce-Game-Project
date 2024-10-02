@@ -1,6 +1,7 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
 const player = new Player(50, 700);
+const player2 = new Player(70, 373);
 const enemy = new Enemy(200, 200);
 const door = new Door();
 const columnArr = [];
@@ -64,8 +65,41 @@ if (enemyArr.length == 0) {
 
 }
 
-setTimeout(stage1, 2000)
+//setTimeout(stage1, 2000)
 
+function stage2(){
+//Boss
+
+
+function addColumns() {
+  let column1 = new Column(200, 130, 100, 100);
+  let column2 = new Column(200, 565, 100, 100);
+  let column3 = new Column(860, 130, 100, 100);
+  let column4 = new Column(860, 565, 100, 100);
+
+  columnArr.push(
+    column1,
+    column2,
+    column3,
+    column4
+  );
+
+  columnArr.forEach(function (column) {
+    column.insert();
+  });
+}
+
+addColumns();
+function spawnArrow() {
+  const arrow = new Arrow();
+  arrow.insert();
+}
+
+player2.insert();
+let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
+
+}
+stage2()
 
 window.addEventListener("keydown", function (event) {
   switch (event.key.toLowerCase()) {
