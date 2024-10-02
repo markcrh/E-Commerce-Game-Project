@@ -1,30 +1,25 @@
-class Enemy {
+class Boss {
   constructor(posX, posY) {
-    this.hp = 2;
+    this.hp = 10;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 50;
-    this.height = 50;
-    this.speed = 4;
+    this.width = 150;
+    this.height = 150;
+    this.speed = 3 ;
     this.sprite = document.createElement("div");
     this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
   }
 
   insert() {
-    this.sprite.setAttribute("id", "enemy");
+    this.sprite.setAttribute("id", "boss");
     this.sprite.style.width = this.width + "px";
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
-  }
-
-  remove() {
-    map.removeChild(this.sprite)
-    clearInterval(this.interval)
   }
 
   move() {
@@ -101,20 +96,6 @@ class Enemy {
     } else {
       return false;
     }
-  }
-  checkArrowCollision(posX, posY) {
-    let self = this;
-      if (
-        posX < arrow.posX + arrow.width &&
-        posY < arrow.posY + arrow.height &&
-        posX + self.width > arrow.posX &&
-        posY + self.height > arrow.posY
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    
   }
 
   /* checkOtherEnemiesCollision() {

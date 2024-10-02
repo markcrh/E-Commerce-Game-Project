@@ -1,43 +1,53 @@
 const map = document.getElementById("game");
-const screen = document.getElementById("screen")
-const player = new Player (50, 700);
-const enemy = new Enemy (200, 200);
+const screen = document.getElementById("screen");
+const player = new Player(50, 700);
+const player2 = new Player(70, 373);
+const enemy = new Enemy(200, 200);
 const door = new Door();
-
-
 const columnArr = [];
 const enemyArr = [];
-const arrowArr = [];
 
-
+function stage1 () {
 function addEnemy() {
-  let enemy1 = new Enemy(100, 100)
-  let enemy2 = new Enemy(300, 120);
+  let enemy1 = new Enemy(225, 260);
+  let enemy2 = new Enemy(350, 590);
+  let enemy3 = new Enemy(555, 375);
+  let enemy4 = new Enemy(885, 45);
+  let enemy5 = new Enemy(1050, 700);
 
-  enemyArr.push(enemy1, enemy2)
+  enemyArr.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
   enemyArr.forEach(function (enemy) {
-    enemy.insert()
-  })
+    enemy.insert();
+  });
 }
 
+addEnemy();
+
 function addColumns() {
+  let column1 = new Column(200, 130, 100, 100);
+  let column2 = new Column(200, 348, 100, 100);
+  let column3 = new Column(200, 565, 100, 100);
+  let column4 = new Column(530, 240, 100, 100);
+  let column5 = new Column(530, 460, 100, 100);
+  let column6 = new Column(860, 130, 100, 100);
+  let column7 = new Column(860, 348, 100, 100);
+  let column8 = new Column(860, 565, 100, 100);
 
-    let column1 = new Column(200, 130, 100, 100);
-    let column2 = new Column(200, 348, 100, 100);
-    let column3 = new Column(200, 565, 100, 100);
-    let column4 = new Column(530, 240, 100, 100);
-    let column5 = new Column(530, 460, 100, 100);
-    let column6 = new Column(860, 130, 100, 100);
-    let column7 = new Column(860, 348, 100, 100);
-    let column8 = new Column(860, 565, 100, 100);
+  columnArr.push(
+    column1,
+    column2,
+    column3,
+    column4,
+    column5,
+    column6,
+    column7,
+    column8
+  );
 
-    columnArr.push(column1, column2, column3, column4, column5, column6, column7, column8)
-
-    columnArr.forEach(function(column){
-        column.insert()
-    })
-
+  columnArr.forEach(function (column) {
+    column.insert();
+  });
 }
 
 function spawnArrow () {
@@ -57,42 +67,79 @@ function spawnArrow () {
   }
 }
 
-addEnemy()
 player.insert();
-let checkEnemyCollision = setInterval(player.collisionDamage, 100, player)
-addColumns();
-door.insert();
+let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
 
+if (enemyArr.length == 0) {
+  door.insert();
+}
+
+}
+
+//setTimeout(stage1, 2000)
+
+function stage2(){
+//Boss
+
+
+function addColumns() {
+  let column1 = new Column(200, 130, 100, 100);
+  let column2 = new Column(200, 565, 100, 100);
+  let column3 = new Column(860, 130, 100, 100);
+  let column4 = new Column(860, 565, 100, 100);
+
+  columnArr.push(
+    column1,
+    column2,
+    column3,
+    column4
+  );
+
+  columnArr.forEach(function (column) {
+    column.insert();
+  });
+}
+
+addColumns();
+function spawnArrow() {
+  const arrow = new Arrow();
+  arrow.insert();
+}
+
+player2.insert();
+let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
+
+}
+stage2()
 
 window.addEventListener("keydown", function (event) {
   switch (event.key.toLowerCase()) {
     case "a":
       player.dirX = -1;
-      player.lastDirection = "left"
+      player.lastDirection = "left";
       player.move();
       break;
 
     case "d":
       player.dirX = 1;
-      player.lastDirection = "right"
-      player.move();                                                                                                                                                                                                                                                                                                                                                                     
+      player.lastDirection = "right";
+      player.move();
       break;
 
     case "w":
       player.dirY = -1;
-      player.lastDirection = "up"
+      player.lastDirection = "up";
       player.move();
       break;
 
     case "s":
       player.dirY = 1;
-      player.lastDirection = "down"
+      player.lastDirection = "down";
       player.move();
       break;
 
     case " ":
-
-      spawnArrow()
+      spawnArrow();
       break;
   }
 });
@@ -114,7 +161,5 @@ window.addEventListener("keyup", function (event) {
     case "s":
       player.dirY = 0;
       break;
-
   }
 });
-
