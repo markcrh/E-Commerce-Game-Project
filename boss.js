@@ -1,6 +1,6 @@
 class Boss {
   constructor(posX, posY) {
-    this.hp = 10;
+    this.hp = 6;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 0;
