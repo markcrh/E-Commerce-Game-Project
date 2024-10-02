@@ -150,7 +150,10 @@ window.addEventListener("keydown", function (event) {
       break;
 
     case " ":
-      spawnArrow();
+      console.log(Arrow.arrowCounter)
+      if (Arrow.arrowCounter <= 3) {
+        spawnArrow();
+      }
       break;
   }
 });

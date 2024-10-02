@@ -1,4 +1,5 @@
 class Arrow {
+    static arrowCounter = 0;
     constructor(posX, posY, dirX, dirY) {
         this.height = 20;
         this.width = 5;
@@ -9,6 +10,7 @@ class Arrow {
         this.speed = 10;
         this.sprite = document.createElement("div");
         this.interval = setInterval(this.move.bind(this), 20)
+        Arrow.arrowCounter ++;
     }
 
     insert() {
@@ -45,6 +47,7 @@ class Arrow {
         map.removeChild(this.sprite)
         arrowArr.shift()
         clearInterval(this.interval)
+        Arrow.arrowCounter--
     }
 
     move() {
