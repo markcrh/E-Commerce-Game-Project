@@ -5,11 +5,10 @@ const enemy = new Enemy (200, 200);
 const door = new Door();
 
 
+const columnArr = [];
+const enemyArr = [];
+const arrowArr = [];
 
-let column; 
-
-const columnArr = []
-const enemyArr = []
 
 function addEnemy() {
   let enemy1 = new Enemy(100, 100)
@@ -42,18 +41,19 @@ function addColumns() {
 }
 
 function spawnArrow () {
+
   if (player.lastDirection == "up"){
     const arrow = new Arrow(player.posX, player.posY, 0, -1 );
-    arrow.insert()
+    arrowArr.push(arrow.insert())
   } else if (player.lastDirection == "down") {
     const arrow = new Arrow(player.posX, player.posY, 0, 1);
-    arrow.insert();
+    arrowArr.push(arrow.insert());
   } else if (player.lastDirection == "right") {
     const arrow = new Arrow(player.posX, player.posY, 1, 0);
-    arrow.insert();
+    arrowArr.push(arrow.insert());
   } else if (player.lastDirection == "left") {
     const arrow = new Arrow(player.posX, player.posY, -1, 0);
-    arrow.insert();
+    arrowArr.push(arrow.insert());
   }
 }
 

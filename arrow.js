@@ -43,6 +43,7 @@ class Arrow {
 
     remove() {
         map.removeChild(this.sprite)
+        arrowArr.shift()
         clearInterval(this.interval)
     }
 
@@ -65,6 +66,11 @@ class Arrow {
         if (this.checkColumnCollision(newX, newY)){
            this.remove()
         }
+        if (this.checkEnemyCollision(newX, newY)){
+            this.remove()
+        }
+
+
     }
     checkColumnCollision(posX, posY) {
         let self = this;
@@ -83,24 +89,31 @@ class Arrow {
         return columnCollision;
     }
 
-   /*  checkEnemyCollision() {
+    checkEnemyCollision(posX, posY) {
         let self = this;
         let enemyCollision = enemyArr.some(function (enemy) {
             if (
-                self.posX <= enemy.posX + enemy.width &&
-                self.posY <= enemy.posY + enemy.height &&
-                self.posX + self.width >= enemy.posX &&
-                self.posY + self.height >= enemy.posY
+                posX <= enemy.posX + enemy.width &&
+                posY <= enemy.posY + enemy.height &&
+                posX + self.width >= enemy.posX &&
+                posY + self.height >= enemy.posY
             ) {
-                
-                self.remove()
+                enemyArr.forEach((index) => {
+                    index.hp -= 1
+                    if (index.hp == 0){
+                        index.remove()
+                        enemyArr.splice(index, 1)
+                        console.log(enemyArr.length)
+                        
+                    }
+                })
                 return true;
             } else {
                 return false;
             }
         });
         return enemyCollision;
-    } */
+    } 
 }
 
 

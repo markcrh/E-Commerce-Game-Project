@@ -1,6 +1,6 @@
 class Enemy {
   constructor(posX, posY) {
-    this.hp = 3;
+    this.hp = 2;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 1;
