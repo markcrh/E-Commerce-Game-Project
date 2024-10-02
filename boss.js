@@ -9,7 +9,7 @@ class Boss {
     this.height = 125;
     this.speed = 5 ;
     this.sprite = document.createElement("div");
-    this.interval = setInterval(this.move.bind(this), 10);
+    //this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
   }
 
@@ -20,6 +20,10 @@ class Boss {
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
+  }
+  remove() {
+    map.removeChild(this.sprite)
+    clearInterval(this.interval)
   }
 
   move() {
@@ -74,7 +78,7 @@ class Boss {
 
   checkColumnCollision(posX, posY) {
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columnArrStage2.some(function (column) {
       if (
         posX < column.posX + column.width &&
         posY < column.posY + column.height &&

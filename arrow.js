@@ -80,12 +80,22 @@ class Arrow {
         if (this.checkEnemyCollision(newX, newY)) {
             this.remove()
         }
-
+        if (this.checkBossCollision(newX, newY)) {
+            this.remove()
+        }
 
     }
     checkColumnCollision(posX, posY) {
+
+        let columns
+        if (player.stage === 1) {
+            columns = [...columnArr]
+        } else {
+            columns = [...columnArrStage2]
+        }
+
         let self = this;
-        let columnCollision = columnArr.some(function (column) {
+        let columnCollision = columns.some(function (column) {
             if (
                 posX <= column.posX + column.width &&
                 posY <= column.posY + column.height &&
@@ -102,7 +112,6 @@ class Arrow {
 
     checkEnemyCollision(posX, posY) {
         let self = this;
-        console.log('in arrow')
         let enemyCollision = enemyArr.forEach(function (enemy, index) {
             if (
                 posX <= enemy.posX + enemy.width &&
@@ -115,7 +124,6 @@ class Arrow {
                 if (enemy.hp <= 0) {
                     enemy.remove()
                     enemyArr.splice(index, 1)
-                    console.log(enemyArr.length)
                     return true;
                 }
             } else {
@@ -123,6 +131,25 @@ class Arrow {
             }
         })
         return enemyCollision;
+    }
+
+    checkBossCollision(posX, posY) {
+        let self = this;
+            if (
+                posX <= boss.posX + boss.width &&
+                posY <= boss.posY + boss.height &&
+                posX + self.width >= boss.posX &&
+                posY + self.height >= boss.posY
+            ) {
+                boss.hp--;
+                self.remove()
+                if (boss.hp <= 0) {
+                    boss.remove()
+                    return true;
+                }
+            } else {
+                return false;
+            }
     }
 }
 

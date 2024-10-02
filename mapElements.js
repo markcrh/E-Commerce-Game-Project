@@ -14,6 +14,11 @@ class Column {
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
   }
+  remove(){
+    map.removeChild(this.sprite)
+  }
+
+
 }
 
 class Door {

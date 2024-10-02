@@ -2,15 +2,36 @@ const map = document.getElementById("game");
 const screen = document.getElementById("screen");
 let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
-const boss = new Boss(530, 323);
+let boss
 const door = new Door();
-const columnArr = [];
+let columnArr = [];
+let columnArrStage2 = []
 const enemyArr = [];
 const arrowArr = [];
 const fireballArr = [];
 
+let flag = true
+
 function stage1() {
   
+ /*  const interval = setInterval(()=>{
+    console.log('running')
+   
+
+    if (player.checkDoorCollision()){
+      console.log('stop')
+      clearInterval(interval)
+      columnArr.forEach(function (column) {
+        column.remove()
+      })
+      player.remove()
+      return 
+    }
+
+  }, 1) */
+
+
+
   door.insert();
 
   function addEnemy() {
@@ -27,7 +48,7 @@ function stage1() {
     });
   }
 
-  addEnemy();
+  //addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -61,16 +82,13 @@ function stage1() {
 
   player.insert();
   let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
-
-  if (enemyArr.length == 0) {
-    door.insert();
-  }
 }
 
-//stage1();
-
 function stage2() {
+
   player = new Player(70, 373);
+  player.stage = 2
+  boss = new Boss(530, 323);
   boss.insert();
 
   function spawnFireballs() {
@@ -85,13 +103,13 @@ function stage2() {
     let column2 = new Column(200, 565, 100, 100);
     let column3 = new Column(860, 130, 100, 100);
     let column4 = new Column(860, 565, 100, 100);
+    columnArrStage2.push(column1, column2, column3, column4);
 
-    columnArr.push(column1, column2, column3, column4);
-
-    columnArr.forEach(function (column) {
+    columnArrStage2.forEach(function (column) {
       column.insert();
     });
   }
+
 
   addColumns();
 
@@ -104,13 +122,15 @@ function stage2() {
       clearInterval(fireballShooting);
       clearInterval(boss.interval);
       clearInterval(collisionDamage);
-      window.alert("cagaste");
     }
   }
   setInterval(checkLiving, 5);
 }
 
-stage2()
+
+  stage1()
+
+
 
 function spawnArrow() {
   if (player.lastDirection == "up") {
@@ -163,7 +183,6 @@ window.addEventListener("keydown", function (event) {
       break;
 
     case " ":
-      console.log(Arrow.arrowCounter)
       if (Arrow.arrowCounter <= 3) {
         spawnArrow();
       }

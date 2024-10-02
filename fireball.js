@@ -81,7 +81,7 @@ class Fireball {
 
   checkColumnCollision(posX, posY) {
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columnArrStage2.some(function (column) {
       if (
         posX <= column.posX + column.width &&
         posY <= column.posY + column.height &&
