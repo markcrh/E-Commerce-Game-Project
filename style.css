@@ -122,7 +122,7 @@
 }
 
 #controlPanel {
-    background-color: blue;
+    background-color: black;
     display: inline-block;
     width: 555px;
     height: 935px;
@@ -139,7 +139,7 @@
 }
 
 #keyHolder {
-    background-color: rgba(255, 255, 0, 0.5);
+    background-color: rgba(143, 143, 27, 0.5);
     position: absolute;
     width: 100px;
     height: 100px;
@@ -148,25 +148,43 @@
 }
 
 #title {
-    background-color:aqua;
+    background-color: rgba(229, 167, 156, 1);
     width: 400px;
     height: 100px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: 75px;
+}
+
+h1 {
+    margin: 2px 50px;
+    font-size: 70px;
+    text-align: center;
 }
 
 #controls {
-    background-color: aqua;
+    background-color: rgba(229, 167, 156, 1);
     width: 400px;
     height: 550px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: 75px;
 }
 
+h3 {
+    margin: 170px 40px;
+    font-size: 30px;
+    text-align: center;
+}
+
 #authors {
-    background-color: aqua;
+    background-color: rgba(229, 167, 156, 1);
     width: 400px;
     height: 100px;
-    margin-top: 50px;
-    margin-left: 75px;
+    margin-top: 40px;
+    margin-left: 75px;border: 5px solid black;
+}
+
+h4 {
+    margin: 8px 55px;
+    font-size: 20px;
+    text-align: center;
 }

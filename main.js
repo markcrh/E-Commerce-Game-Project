@@ -67,7 +67,7 @@ function stage1() {
   }
 }
 
-//stage1();
+stage1();
 
 function stage2() {
   player = new Player(70, 373);
@@ -110,7 +110,7 @@ function stage2() {
   setInterval(checkLiving, 5);
 }
 
-stage2()
+//stage2()
 
 function spawnArrow() {
   if (player.lastDirection == "up") {
