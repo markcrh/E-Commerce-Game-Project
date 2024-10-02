@@ -5,11 +5,11 @@ class Enemy {
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 50;
-    this.height = 50;
+    this.width = 60;
+    this.height = 60;
     this.speed = 4;
     this.sprite = document.createElement("div");
-    this.interval = setInterval(this.move.bind(this), 10);
+    //this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
   }
 
@@ -61,15 +61,19 @@ class Enemy {
     if (random === 0) {
       this.dirX = 1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage = "url('./media/img/enemy-right.png')";
     } else if (random === 1) {
       this.dirX = -1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage = "url('./media/img/enemy-left.png')";
     } else if (random === 2) {
       this.dirX = 0;
       this.dirY = 1;
+      this.sprite.style.backgroundImage = "url('./media/img/enemy-down.png')";
     } else {
       this.dirX = 0;
       this.dirY = -1;
+      this.sprite.style.backgroundImage = "url('./media/img/enemy-up.png')";
     }
   }
 

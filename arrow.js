@@ -1,8 +1,8 @@
 class Arrow {
     static arrowCounter = 0;
     constructor(posX, posY, dirX, dirY) {
-        this.height = 20;
-        this.width = 5;
+        this.height = 30;
+        this.width = 20;
         this.posY = posY;
         this.posX = posX;
         this.dirY = dirY;
@@ -17,25 +17,33 @@ class Arrow {
         this.sprite.setAttribute("class", "arrow");
 
         if (player.lastDirection == "up") {
-            this.sprite.style.height = 20 + "px";
-            this.sprite.style.width = 5 + "px";
+            this.sprite.style.height = 30 + "px";
+            this.sprite.style.width = 20 + "px";
             this.posX = player.posX + player.width / 2 - this.width / 2
             this.posY = player.posY
-        } else if (player.lastDirection == "down") {
-            this.sprite.style.height = 20 + "px";
-            this.sprite.style.width = 5 + "px";
-            this.posY = player.posY + player.height - this.height
-            this.posX = player.posX + player.width / 2 - this.width / 2
-        } else if (player.lastDirection == "right") {
-            this.sprite.style.height = 5 + "px";
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-up.png')";
+
+        } else if (player.lastDirection == "down"){
+            this.sprite.style.height = 30 + "px";
             this.sprite.style.width = 20 + "px";
+            this.posY = player.posY + player.height - this.height
+            this.posX = player.posX + player.width / 2 -this.width / 2
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-down.png')";
+        }else if (player.lastDirection == "right") {
+            this.sprite.style.height = 20 + "px";
+            this.sprite.style.width = 30 + "px";
             this.posX = player.posX + player.width / 2 + this.width
             this.posY = player.posY + player.height / 2 - this.width / 2
+            this.sprite.style.backgroundImage = "url('./media/img/arrow-right.png')";
         } else if (player.lastDirection == "left") {
-            this.sprite.style.height = 5 + "px";
-            this.sprite.style.width = 20 + "px";
-            this.posX = player.posX
+            this.sprite.style.height = 20 + "px";
+            this.sprite.style.width = 30 + "px";
+            this.posX = player.posX 
             this.posY = player.posY + player.height / 2 - this.width / 2
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-left.png')";
         }
 
         this.sprite.style.left = this.posX + "px";

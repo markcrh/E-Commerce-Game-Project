@@ -1,14 +1,17 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
-const player = new Player(50, 700);
-const player2 = new Player(70, 373);
+let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
+const boss = new Boss(530, 323);
 const door = new Door();
 const columnArr = [];
 const enemyArr = [];
-const arrowArr = []
+const arrowArr = [];
+const fireballArr = [];
 
-function stage1() { 
+function stage1() {
+  
+  door.insert();
 
   function addEnemy() {
     let enemy1 = new Enemy(225, 260);
@@ -52,65 +55,67 @@ function stage1() {
     });
   }
 
-  addColumns()
-
-
+  addColumns();
 
 
 
   player.insert();
   let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
 
-  let doorInterval = setInterval(function () {
-    if (enemyArr.length == 0) {
-      door.insert()
-      clearInterval(doorInterval)
-    };
-  }, 10)
-
+  if (enemyArr.length == 0) {
+    door.insert();
+  }
 }
 
-setTimeout(stage1, 1000)
+//stage1();
 
-/* function stage2(){
-//Boss
+function stage2() {
+  player = new Player(70, 373);
+  boss.insert();
 
+  function spawnFireballs() {
+    const fireball = new Fireball(boss.posX, boss.posY);
+    fireballArr.push(fireball.insert());
+  }
 
-function addColumns() {
-  let column1 = new Column(200, 130, 100, 100);
-  let column2 = new Column(200, 565, 100, 100);
-  let column3 = new Column(860, 130, 100, 100);
-  let column4 = new Column(860, 565, 100, 100);
+  const fireballShooting = setInterval(spawnFireballs, 500);
 
-  columnArr.push(
-    column1,
-    column2,
-    column3,
-    column4
-  );
+  function addColumns() {
+    let column1 = new Column(200, 130, 100, 100);
+    let column2 = new Column(200, 565, 100, 100);
+    let column3 = new Column(860, 130, 100, 100);
+    let column4 = new Column(860, 565, 100, 100);
 
-  columnArr.forEach(function (column) {
-    column.insert();
-  });
+    columnArr.push(column1, column2, column3, column4);
+
+    columnArr.forEach(function (column) {
+      column.insert();
+    });
+  }
+
+  addColumns();
+
+  player.insert(70, 373);
+  const collisionDamage = setInterval(player.collisionDamage, 100, player);
+
+  function checkLiving() {
+    if (player.hp > 0) {
+    } else {
+      clearInterval(fireballShooting);
+      clearInterval(boss.interval);
+      clearInterval(collisionDamage);
+      window.alert("cagaste");
+    }
+  }
+  setInterval(checkLiving, 5);
 }
 
-addColumns();
+stage2()
+
 function spawnArrow() {
-  const arrow = new Arrow();
-  arrow.insert();
-}
-
-player2.insert();
-let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
-
-} */
-//stage2()
-
-function spawnArrow() {
-
   if (player.lastDirection == "up") {
     const arrow = new Arrow(player.posX, player.posY, 0, -1);
-    arrowArr.push(arrow.insert())
+    arrowArr.push(arrow.insert());
   } else if (player.lastDirection == "down") {
     const arrow = new Arrow(player.posX, player.posY, 0, 1);
     arrowArr.push(arrow.insert());
@@ -128,24 +133,32 @@ window.addEventListener("keydown", function (event) {
     case "a":
       player.dirX = -1;
       player.lastDirection = "left";
+      player.sprite.style.backgroundImage =
+        "url('./media/img/player-left.png')";
       player.move();
       break;
 
     case "d":
       player.dirX = 1;
       player.lastDirection = "right";
+      player.sprite.style.backgroundImage =
+        "url('./media/img/player-right.png')";
       player.move();
       break;
 
     case "w":
       player.dirY = -1;
       player.lastDirection = "up";
+      player.sprite.style.backgroundImage =
+        "url('./media/img/player-up.png')";
       player.move();
       break;
 
     case "s":
       player.dirY = 1;
       player.lastDirection = "down";
+      player.sprite.style.backgroundImage =
+        "url('./media/img/player-down.png')";
       player.move();
       break;
 
