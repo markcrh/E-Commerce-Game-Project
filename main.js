@@ -10,6 +10,9 @@ const arrowArr = [];
 const fireballArr = [];
 
 function stage1() {
+  
+  door.insert();
+
   function addEnemy() {
     let enemy1 = new Enemy(225, 260);
     let enemy2 = new Enemy(350, 590);
@@ -54,6 +57,8 @@ function stage1() {
 
   addColumns();
 
+
+
   player.insert();
   let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
 
@@ -62,7 +67,7 @@ function stage1() {
   }
 }
 
-stage1();
+//stage1();
 
 function stage2() {
   player = new Player(70, 373);
@@ -102,11 +107,10 @@ function stage2() {
       window.alert("cagaste");
     }
   }
-
   setInterval(checkLiving, 5);
 }
 
-//stage2()
+stage2()
 
 function spawnArrow() {
   if (player.lastDirection == "up") {

@@ -70,7 +70,8 @@
 }
 
 #door {
-    background-color: rgb(114, 17, 17);
+    background-image: url('./media/img/door-closed.png');
+    background-size: cover;
     position: absolute;
     width: 80px;
     height: 80px;
@@ -90,7 +91,8 @@
 }
 
 #boss {
-    background-color: rgb(65, 16, 110);
+    background-image: url('./media/img/boss-left.png');
+    background-size: cover;
     position: absolute;
     width: 150px;
     height: 150px;
@@ -116,7 +118,7 @@
 
 .fireball {
     position: absolute;
-    background-color: red;
+    background-size: cover;
 }
 
 #controlPanel {

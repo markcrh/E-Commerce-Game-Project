@@ -9,7 +9,7 @@ class Enemy {
     this.height = 60;
     this.speed = 4;
     this.sprite = document.createElement("div");
-    this.interval = setInterval(this.move.bind(this), 10);
+    //this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
   }
 

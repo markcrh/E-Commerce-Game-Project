@@ -31,7 +31,12 @@ class Player {
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-    this.checkDoorCollision(newX, newY);
+
+    if (enemyArr.length == 0){
+      this.checkDoorCollision();
+      door.sprite.style.backgroundImage = "url('./media/img/door-open.png')";
+
+    }
 
     if (
       newX >= 0 &&
@@ -127,14 +132,13 @@ class Player {
   }
 
   
-  checkDoorCollision(posX, posY) {
+  checkDoorCollision() {
     if (
-      this.posX <= door.posX + door.width &&
-      this.posY <= door.posY + door.height &&
-      this.posX + this.width >= door.posX &&
-      this.posY + this.height >= door.posY
+      this.posX + this.width >= 1155 && 
+      this.posY >= 370 && 
+      this.posY <= 420
     ) {
-      window.alert("hey")
+      console.log('door')
       return true;
     }
   }

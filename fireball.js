@@ -58,15 +58,24 @@ class Fireball {
     if (random === 0) {
       this.dirX = 1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage = "url('./media/img/fireball-right.png')";
+      boss.sprite.style.backgroundImage = "url('./media/img/boss-right.png')";
     } else if (random === 1) {
       this.dirX = -1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage =
+        "url('./media/img/fireball-left.png')";
+      boss.sprite.style.backgroundImage = "url('./media/img/boss-left.png')";
     } else if (random === 2) {
       this.dirX = 0;
       this.dirY = 1;
+      this.sprite.style.backgroundImage =
+        "url('./media/img/fireball-down.png')";
     } else {
       this.dirX = 0;
       this.dirY = -1;
+      this.sprite.style.backgroundImage =
+        "url('./media/img/fireball-up.png')";
     }
   }
 
