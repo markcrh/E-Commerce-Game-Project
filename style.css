@@ -5,14 +5,52 @@
 }
 
 #screen {
-    background-color: rgb(6, 70, 0);
+    background-image: url('./media/img/column.png');
+    background-size:70px;
+    background-repeat: space;
     width: 1300px;
     height: 935px;
     display: inline-block;
 }
 
+.wall-left {
+    width: 70px;
+    height: 795px;
+    top: 70px;
+    position: absolute;
+    background-image: url('./media/img/wall-left.png');
+    background-size: contain;
+}
+.wall-up {
+    width: 1160px;
+    height: 70px;
+    left: 70px;
+    position: absolute;
+    background-image: url('./media/img/wall-up.png');
+    background-size: contain;
+}
+.wall-right {
+    width: 70px;
+    height: 795px;
+    top: 70px;
+    left: 1230px;
+    position: absolute;
+    background-image: url('./media/img/wall-right.png');
+    background-size: contain;
+}
+.wall-down {
+    width: 1160px;
+    height: 70px;
+    left: 70px;
+    top: 865px;
+    position: absolute;
+    background-image: url('./media/img/wall-down.png');
+    background-size: contain;
+}
+
 #game {
-    background-color: green;
+    background-image: url('./media/img/floor.png');
+    background-size: 40px;
     width: 1160px;
     height: 795px;
     display: inline-block;
@@ -22,7 +60,8 @@
 }
 
 .column {
-    background-color: black;
+    background-image: url('./media/img/column.png');
+    background-size: 50px;
     position: absolute;
     width: 100px;
     height: 100px;
@@ -40,7 +79,10 @@
 }
 
 #player {
-    background-color: greenyellow;
+    background-image: url('./media/img/player-down.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
     width: 50px;
     height: 50px;
@@ -56,16 +98,20 @@
 }
 
 #enemy {
-    background-color: rgb(150, 1, 1);
+    background-image: url('./media/img/enemy-down.png');
+    background-size: cover;
     position: absolute;
     width: 50px;
     height: 50px;
     left: 150px;
 }
 
+
 .arrow {
     position: absolute;
-    background-color: rgb(31, 29, 29);
+    background-image: url('./media/img/arrow-up.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .fireball {

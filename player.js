@@ -5,8 +5,8 @@ class Player {
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 50;
-    this.height = 50;
+    this.width = 40;
+    this.height = 40;
     this.speed = 2;
     this.lastDirection = "";
     this.sprite = document.createElement("div");
@@ -24,6 +24,7 @@ class Player {
 
   remove() {
     map.removeChild(this.sprite);
+    this.hp = 0
     clearInterval(this.playerInterval);
   }
 
@@ -36,7 +37,8 @@ class Player {
       newX >= 0 &&
       newX <= 1160 - this.width &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision()
+      !this.checkEnemyCollision() &&
+      !this.checkBossCollision()
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
@@ -47,7 +49,8 @@ class Player {
       newY >= 0 &&
       newY <= 795 - this.height &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision()
+      !this.checkEnemyCollision() &&
+      !this.checkBossCollision()
     ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
@@ -107,6 +110,22 @@ class Player {
     return enemyCollision;
   }
 
+  checkBossCollision(posX, posY){
+    if (
+      this.posX <= boss.posX + boss.width &&
+      this.posY <= boss.posY + boss.height &&
+      this.posX + this.width >= boss.posX &&
+      this.posY + this.height >= boss.posY
+    ) {
+      
+        player.remove();
+        return true;
+      
+    } else {
+      return false;
+    }
+  }
+
   
   checkDoorCollision(posX, posY) {
     if (
@@ -115,7 +134,7 @@ class Player {
       this.posX + this.width >= door.posX &&
       this.posY + this.height >= door.posY
     ) {
-      window.alert("hey");
+      window.alert("hey")
       return true;
     }
   }
