@@ -1,11 +1,14 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
-const player = new Player(50, 700);
-const player2 = new Player(70, 373);
+let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
+const boss = new Boss(530, 323);
 const door = new Door();
 const columnArr = [];
 const enemyArr = [];
+const arrowArr = []
+const fireballArr = []
+
 
 function stage1 () {
 function addEnemy() {
@@ -50,22 +53,9 @@ function addColumns() {
   });
 }
 
-function spawnArrow () {
+addColumns();
 
-  if (player.lastDirection == "up"){
-    const arrow = new Arrow(player.posX, player.posY, 0, -1 );
-    arrowArr.push(arrow.insert())
-  } else if (player.lastDirection == "down") {
-    const arrow = new Arrow(player.posX, player.posY, 0, 1);
-    arrowArr.push(arrow.insert());
-  } else if (player.lastDirection == "right") {
-    const arrow = new Arrow(player.posX, player.posY, 1, 0);
-    arrowArr.push(arrow.insert());
-  } else if (player.lastDirection == "left") {
-    const arrow = new Arrow(player.posX, player.posY, -1, 0);
-    arrowArr.push(arrow.insert());
-  }
-}
+
 
 player.insert();
 let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
@@ -79,8 +69,15 @@ if (enemyArr.length == 0) {
 //setTimeout(stage1, 2000)
 
 function stage2(){
-//Boss
+player = new Player(70, 373);
+boss.insert();
 
+function spawnFireballs(){
+  const fireball = new Fireball(boss.posX, boss.posY)
+  fireballArr.push(fireball.insert())
+}
+
+const fireballShootin = setInterval(spawnFireballs, 500)
 
 function addColumns() {
   let column1 = new Column(200, 130, 100, 100);
@@ -101,16 +98,29 @@ function addColumns() {
 }
 
 addColumns();
-function spawnArrow() {
-  const arrow = new Arrow();
-  arrow.insert();
-}
 
-player2.insert();
+player.insert(70, 373);
 let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
 
 }
+
 stage2()
+
+function spawnArrow() {
+  if (player.lastDirection == "up") {
+    const arrow = new Arrow(player.posX, player.posY, 0, -1);
+    arrowArr.push(arrow.insert());
+  } else if (player.lastDirection == "down") {
+    const arrow = new Arrow(player.posX, player.posY, 0, 1);
+    arrowArr.push(arrow.insert());
+  } else if (player.lastDirection == "right") {
+    const arrow = new Arrow(player.posX, player.posY, 1, 0);
+    arrowArr.push(arrow.insert());
+  } else if (player.lastDirection == "left") {
+    const arrow = new Arrow(player.posX, player.posY, -1, 0);
+    arrowArr.push(arrow.insert());
+  }
+}
 
 window.addEventListener("keydown", function (event) {
   switch (event.key.toLowerCase()) {

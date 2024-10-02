@@ -5,9 +5,9 @@ class Boss {
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 150;
-    this.height = 150;
-    this.speed = 3 ;
+    this.width = 125;
+    this.height = 125;
+    this.speed = 5 ;
     this.sprite = document.createElement("div");
     this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);

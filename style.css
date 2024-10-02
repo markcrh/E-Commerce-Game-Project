@@ -48,7 +48,7 @@
 }
 
 #boss {
-    background-color: blueviolet;
+    background-color: rgb(65, 16, 110);
     position: absolute;
     width: 150px;
     height: 150px;
@@ -68,6 +68,10 @@
     background-color: rgb(31, 29, 29);
 }
 
+.fireball {
+    position: absolute;
+    background-color: red;
+}
 
 #controlPanel {
     background-color: blue;

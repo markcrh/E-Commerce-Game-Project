@@ -8,7 +8,7 @@ class Player {
     this.width = 50;
     this.height = 50;
     this.speed = 2;
-    this.lastDirection = '';
+    this.lastDirection = "";
     this.sprite = document.createElement("div");
     this.playerInterval = setInterval(this.move.bind(this), 10);
   }
@@ -107,6 +107,7 @@ class Player {
     return enemyCollision;
   }
 
+  
   checkDoorCollision(posX, posY) {
     if (
       this.posX <= door.posX + door.width &&
@@ -114,7 +115,7 @@ class Player {
       this.posX + this.width >= door.posX &&
       this.posY + this.height >= door.posY
     ) {
-      window.alert('hey')
+      window.alert("hey");
       return true;
     }
   }
