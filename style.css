@@ -48,6 +48,10 @@
     background-size: contain;
 }
 
+#intro {
+    
+}
+
 #game {
     background-image: url('./media/img/floor.png');
     background-size: 40px;

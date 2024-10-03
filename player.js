@@ -50,7 +50,7 @@ class Player {
         deleteColums()
 
         this.remove()
-
+        soundStage1.pause()
         stage2()
       }
 

@@ -10,9 +10,15 @@ const enemyArr = [];
 const arrowArr = [];
 const fireballArr = [];
 
+
+
 let flag = true
 
+
 function stage1() {
+  
+  soundStage1.play()
+  soundStage1.loop = true
   
  /*  const interval = setInterval(()=>{
     console.log('running')
@@ -31,7 +37,6 @@ function stage1() {
   }, 1) */
 
 
-
   door.insert();
 
   function addEnemy() {
@@ -48,7 +53,7 @@ function stage1() {
     });
   }
 
-  //addEnemy();
+  addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -82,6 +87,8 @@ function stage1() {
 
   player.insert();
   let checkEnemyCollision = setInterval(player.collisionDamage, 100, player);
+
+  
 }
 
 function stage2() {
@@ -125,6 +132,9 @@ function stage2() {
     }
   }
   setInterval(checkLiving, 5);
+
+  soundStage2.play();
+  soundStage2.loop = true;
 }
 
 
