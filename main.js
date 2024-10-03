@@ -47,7 +47,7 @@ function stage1() {
     });
   }
 
-  //addEnemy();
+  addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -87,6 +87,7 @@ function stage1() {
 
 function stage2() {
 
+  door.remove()
   player = new Player(70, 373);
   player.stage = 2
   boss = new Boss(530, 323);

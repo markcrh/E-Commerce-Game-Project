@@ -125,7 +125,6 @@ class Arrow {
                 posY + self.height >= enemy.posY
             ) {
                 enemy.hp --;
-                enemy.style.filter = 'brightness(0) saturate(100%) hue-rotate(-120deg)'
                 self.remove()
                 if (enemy.hp <= 0) {
                     enemy.remove()
@@ -154,6 +153,7 @@ class Arrow {
                 boss.hp--;
                 self.remove()
                 if (boss.hp <= 0) {
+                    clearInterval(fireballShooting);
                     boss.remove()
                     return true;
                 }
