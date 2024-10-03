@@ -9,7 +9,7 @@ class Boss {
     this.height = 125;
     this.speed = 5 ;
     this.sprite = document.createElement("div");
-    this.interval = setInterval(this.move.bind(this), 10);
+   // this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
   }
 
@@ -24,10 +24,6 @@ class Boss {
   remove() {
     map.removeChild(this.sprite)
     clearInterval(this.interval)
-    fireballArr.forEach(function(fireball){
-      fireball.remove()
-    })
-    clearInterval(fireballShooting);
   }
 
   move() {

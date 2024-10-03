@@ -53,7 +53,6 @@ class Arrow {
     }
 
     remove() {
-        console.log(this)
         map.removeChild(this.sprite)
         arrowArr.shift()
         clearInterval(this.interval)
@@ -138,10 +137,16 @@ class Arrow {
         return enemyCollision;
     }
 
+    win(){
+        createButton("YOU WIN")
+        button.addEventListener('click', function () {
+            location.reload()
+        })
+        boss.remove()
+    }
+
     checkBossCollision(posX, posY) {
         let self = this;
-      //  console.log(posX, self.posX)
-      console.log(boss)
             if (
                 posX <= boss.posX + boss.width &&
                 posY <= boss.posY + boss.height &&
@@ -149,12 +154,11 @@ class Arrow {
                 posY + self.height >= boss.posY
             ) {
 
-                console.log('colision')
                 boss.hp--;
                 self.remove()
                 if (boss.hp <= 0) {
                     clearInterval(fireballShooting);
-                    boss.remove()
+                    self.win()
                     return true;
                 }
             } else {

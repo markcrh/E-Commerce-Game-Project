@@ -47,7 +47,7 @@ function stage1() {
     });
   }
 
-  addEnemy();
+  //addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -125,6 +125,10 @@ function stage2() {
       clearInterval(boss.interval);
       clearInterval(collisionDamage);
     }
+  }
+
+  if (boss.hp <= 0){
+    console.log('win')
   }
   setInterval(checkLiving, 5);
 

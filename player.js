@@ -136,7 +136,6 @@ class Player {
   gameOver(){
     createButton("RESTART")
     button.addEventListener('click', function () {
-      //map.removeChild(button)
       location.reload()
     })
 
