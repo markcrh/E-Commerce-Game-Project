@@ -1,6 +1,6 @@
 class Boss {
   constructor(posX, posY) {
-    this.hp = 6;
+    this.hp = 3;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 0;
@@ -24,6 +24,10 @@ class Boss {
   remove() {
     map.removeChild(this.sprite)
     clearInterval(this.interval)
+    fireballArr.forEach(function(fireball){
+      fireball.remove()
+    })
+    clearInterval(fireballShooting);
   }
 
   move() {

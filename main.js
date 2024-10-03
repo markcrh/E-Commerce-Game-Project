@@ -1,6 +1,6 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
-const start = document.getElementById("start")
+const gameOver = document.getElementById("gameOver")
 let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
 let boss
@@ -10,6 +10,7 @@ let columnArrStage2 = []
 const enemyArr = [];
 const arrowArr = [];
 const fireballArr = [];
+let fireballShooting
 
 document.addEventListener('DOMContentLoaded', function(){
   soundIntro.play()
@@ -17,6 +18,15 @@ document.addEventListener('DOMContentLoaded', function(){
 })
 
 let flag = false
+
+function createButton(text){
+  const button = document.createElement("button")
+  button.setAttribute("id", "button")
+  button.innerText = text
+  map.appendChild(button)
+}
+
+const start = createButton("START")
 
 
 function stage1() {
@@ -87,7 +97,7 @@ function stage2() {
     fireballArr.push(fireball.insert());
   }
 
-  const fireballShooting = setInterval(spawnFireballs, 500);
+  fireballShooting = setInterval(spawnFireballs, 500);
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -200,8 +210,8 @@ window.addEventListener("keyup", function (event) {
 });
 
 
-  start.addEventListener('click', function(){
-    map.removeChild(start)
+  button.addEventListener('click', function(){
+    map.removeChild(button)
     soundIntro.pause()
     soundStage1.play()
     soundStage1.loop = true

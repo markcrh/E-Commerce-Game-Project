@@ -118,8 +118,12 @@ class Player {
             clearInterval(enemy.interval)
             enemy.remove()
           })          
-          soundStage1.pause()
-          player.remove();
+            
+            soundStage1.pause()
+            player.remove();
+            player.gameOver()
+
+          
         }
         return true;
       } else {
@@ -127,6 +131,15 @@ class Player {
       }
     });
     return enemyCollision;
+  }
+
+  gameOver(){
+    createButton("RESTART")
+    button.addEventListener('click', function () {
+      //map.removeChild(button)
+      location.reload()
+    })
+
   }
 
   checkEnemyCollision() {
@@ -153,6 +166,8 @@ class Player {
       this.posX + this.width >= boss.posX &&
       this.posY + this.height >= boss.posY
     ) {
+      player.gameOver()
+
         soundStage2.pause()
         player.remove();
         return true;

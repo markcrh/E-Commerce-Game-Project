@@ -25,7 +25,7 @@ class Fireball {
 
   remove() {
     map.removeChild(this.sprite);
-    //fireballArr.shift();
+    fireballArr.shift();
     clearInterval(this.interval);
   }
 
@@ -51,7 +51,9 @@ class Fireball {
     if (this.checkPlayerCollision(newX, newY)) {
       this.remove();
       soundStage2.pause()
+      player.gameOver()
       player.remove()
+      return
     }
   }
   randomDir() {

@@ -1,5 +1,6 @@
 class Arrow {
     static arrowCounter = 0;
+
     constructor(posX, posY, dirX, dirY) {
         this.height = 30;
         this.width = 20;
@@ -52,6 +53,7 @@ class Arrow {
     }
 
     remove() {
+        console.log(this)
         map.removeChild(this.sprite)
         arrowArr.shift()
         clearInterval(this.interval)
@@ -80,14 +82,14 @@ class Arrow {
         if (this.checkEnemyCollision(newX, newY)) {
             this.remove()
         }
-        if (player.stage2 == 2){
 
+        if (player.stage == 2){
             if (this.checkBossCollision(newX, newY)) {
                 this.remove()
             }
         }
+        }
 
-    }
     checkColumnCollision(posX, posY) {
 
         let columns
@@ -139,12 +141,16 @@ class Arrow {
 
     checkBossCollision(posX, posY) {
         let self = this;
+      //  console.log(posX, self.posX)
+      console.log(boss)
             if (
                 posX <= boss.posX + boss.width &&
                 posY <= boss.posY + boss.height &&
                 posX + self.width >= boss.posX &&
                 posY + self.height >= boss.posY
             ) {
+
+                console.log('colision')
                 boss.hp--;
                 self.remove()
                 if (boss.hp <= 0) {
@@ -155,7 +161,7 @@ class Arrow {
                 return false;
             }
     }
+
+
+
 }
-
-
-
