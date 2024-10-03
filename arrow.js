@@ -1,7 +1,8 @@
 class Arrow {
+    static arrowCounter = 0;
     constructor(posX, posY, dirX, dirY) {
-        this.height = 20;
-        this.width = 5;
+        this.height = 30;
+        this.width = 20;
         this.posY = posY;
         this.posX = posX;
         this.dirY = dirY;
@@ -9,33 +10,42 @@ class Arrow {
         this.speed = 10;
         this.sprite = document.createElement("div");
         this.interval = setInterval(this.move.bind(this), 20)
+        Arrow.arrowCounter ++;
     }
 
     insert() {
         this.sprite.setAttribute("class", "arrow");
-        
+
         if (player.lastDirection == "up") {
-            this.sprite.style.height = 20 + "px";
-            this.sprite.style.width = 5 + "px";
+            this.sprite.style.height = 30 + "px";
+            this.sprite.style.width = 20 + "px";
             this.posX = player.posX + player.width / 2 - this.width / 2
             this.posY = player.posY
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-up.png')";
+
         } else if (player.lastDirection == "down"){
-            this.sprite.style.height = 20 + "px";
-            this.sprite.style.width = 5 + "px";
+            this.sprite.style.height = 30 + "px";
+            this.sprite.style.width = 20 + "px";
             this.posY = player.posY + player.height - this.height
             this.posX = player.posX + player.width / 2 -this.width / 2
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-down.png')";
         }else if (player.lastDirection == "right") {
-            this.sprite.style.height = 5 + "px";
-            this.sprite.style.width = 20 + "px";
+            this.sprite.style.height = 20 + "px";
+            this.sprite.style.width = 30 + "px";
             this.posX = player.posX + player.width / 2 + this.width
             this.posY = player.posY + player.height / 2 - this.width / 2
+            this.sprite.style.backgroundImage = "url('./media/img/arrow-right.png')";
         } else if (player.lastDirection == "left") {
-            this.sprite.style.height = 5 + "px";
-            this.sprite.style.width = 20 + "px";
+            this.sprite.style.height = 20 + "px";
+            this.sprite.style.width = 30 + "px";
             this.posX = player.posX 
             this.posY = player.posY + player.height / 2 - this.width / 2
+            this.sprite.style.backgroundImage =
+              "url('./media/img/arrow-left.png')";
         }
-       
+
         this.sprite.style.left = this.posX + "px";
         this.sprite.style.top = this.posY + "px";
         map.appendChild(this.sprite);
@@ -45,13 +55,14 @@ class Arrow {
         map.removeChild(this.sprite)
         arrowArr.shift()
         clearInterval(this.interval)
+        Arrow.arrowCounter--
     }
 
     move() {
         let newX = this.posX + this.speed * this.dirX;
         let newY = this.posY + this.speed * this.dirY;
-        
-        if (newY >= 0 && newY <= 795 - this.height){
+
+        if (newY >= 0 && newY <= 795 - this.height) {
             this.posY = newY;
             this.sprite.style.top = this.posY + "px";
         } else {
@@ -63,18 +74,28 @@ class Arrow {
         } else {
             this.remove()
         }
-        if (this.checkColumnCollision(newX, newY)){
-           this.remove()
+        if (this.checkColumnCollision(newX, newY)) {
+            this.remove()
         }
-        if (this.checkEnemyCollision(newX, newY)){
+        if (this.checkEnemyCollision(newX, newY)) {
+            this.remove()
+        }
+        if (this.checkBossCollision(newX, newY)) {
             this.remove()
         }
 
-
     }
     checkColumnCollision(posX, posY) {
+
+        let columns
+        if (player.stage === 1) {
+            columns = [...columnArr]
+        } else {
+            columns = [...columnArrStage2]
+        }
+
         let self = this;
-        let columnCollision = columnArr.some(function (column) {
+        let columnCollision = columns.some(function (column) {
             if (
                 posX <= column.posX + column.width &&
                 posY <= column.posY + column.height &&
@@ -91,29 +112,45 @@ class Arrow {
 
     checkEnemyCollision(posX, posY) {
         let self = this;
-        let enemyCollision = enemyArr.some(function (enemy) {
+        let enemyCollision = enemyArr.forEach(function (enemy, index) {
             if (
                 posX <= enemy.posX + enemy.width &&
                 posY <= enemy.posY + enemy.height &&
                 posX + self.width >= enemy.posX &&
                 posY + self.height >= enemy.posY
             ) {
-                enemyArr.forEach((index) => {
-                    index.hp -= 1
-                    if (index.hp == 0){
-                        index.remove()
-                        enemyArr.splice(index, 1)
-                        console.log(enemyArr.length)
-                        
-                    }
-                })
-                return true;
+                enemy.hp --;
+                self.remove()
+                if (enemy.hp <= 0) {
+                    enemy.remove()
+                    enemyArr.splice(index, 1)
+                    return true;
+                }
             } else {
                 return false;
             }
-        });
+        })
         return enemyCollision;
-    } 
+    }
+
+    checkBossCollision(posX, posY) {
+        let self = this;
+            if (
+                posX <= boss.posX + boss.width &&
+                posY <= boss.posY + boss.height &&
+                posX + self.width >= boss.posX &&
+                posY + self.height >= boss.posY
+            ) {
+                boss.hp--;
+                self.remove()
+                if (boss.hp <= 0) {
+                    boss.remove()
+                    return true;
+                }
+            } else {
+                return false;
+            }
+    }
 }
 
 

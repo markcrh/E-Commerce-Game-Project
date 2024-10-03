@@ -1,13 +1,13 @@
 class Boss {
   constructor(posX, posY) {
-    this.hp = 10;
+    this.hp = 6;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 150;
-    this.height = 150;
-    this.speed = 3 ;
+    this.width = 125;
+    this.height = 125;
+    this.speed = 5 ;
     this.sprite = document.createElement("div");
     this.interval = setInterval(this.move.bind(this), 10);
     this.randomMovement = setInterval(this.randomDir.bind(this), 500);
@@ -20,6 +20,10 @@ class Boss {
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
+  }
+  remove() {
+    map.removeChild(this.sprite)
+    clearInterval(this.interval)
   }
 
   move() {
@@ -56,9 +60,13 @@ class Boss {
     if (random === 0) {
       this.dirX = 1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage =
+        "url('./media/img/boss-right.png')";
     } else if (random === 1) {
       this.dirX = -1;
       this.dirY = 0;
+      this.sprite.style.backgroundImage =
+        "url('./media/img/boss-left.png')";
     } else if (random === 2) {
       this.dirX = 0;
       this.dirY = 1;
@@ -70,7 +78,7 @@ class Boss {
 
   checkColumnCollision(posX, posY) {
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columnArrStage2.some(function (column) {
       if (
         posX < column.posX + column.width &&
         posY < column.posY + column.height &&

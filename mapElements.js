@@ -14,14 +14,19 @@ class Column {
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
   }
+  remove(){
+    map.removeChild(this.sprite)
+  }
+
+
 }
 
 class Door {
-  constructor(){
-    this.posX = 1155;
-    this.posY = 348;
-    this.width = 71;
-    this.height = 100;
+  constructor() {
+    this.posX = 1230
+    this.posY = 432.5
+    this.width = 70;
+    this.height = 70;
     this.sprite = document.createElement("div");
   }
   insert() {
@@ -30,7 +35,10 @@ class Door {
     this.sprite.style.height = this.height + "px";
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
-    map.appendChild(this.sprite);
+    screen.appendChild(this.sprite);
   }
 }
 
+let soundStage1 = new Audio("/songs/last_guardian.mp3");
+let soundStage2 = new Audio("/songs/n64_zelda_ganondorf.mp3");
+let soundIntro = new Audio("/songs/ocarina_of_time.mp3");

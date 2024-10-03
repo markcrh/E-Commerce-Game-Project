@@ -5,10 +5,11 @@ class Player {
     this.posY = posY;
     this.dirX = 0;
     this.dirY = 0;
-    this.width = 50;
-    this.height = 50;
+    this.width = 40;
+    this.height = 40;
     this.speed = 2;
-    this.lastDirection = '';
+    this.stage = 1
+    this.lastDirection = "";
     this.sprite = document.createElement("div");
     this.playerInterval = setInterval(this.move.bind(this), 10);
   }
@@ -24,19 +25,45 @@ class Player {
 
   remove() {
     map.removeChild(this.sprite);
+    this.hp = 0
     clearInterval(this.playerInterval);
   }
 
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-    this.checkDoorCollision(newX, newY);
+
+    if (enemyArr.length == 0){
+      door.sprite.style.backgroundImage = "url('./media/img/door-open.png')";
+
+      if (this.checkDoorCollision()){
+        //limpiar todo lo relativo a stage 1
+        // ejecutar stage2
+        function deleteColums() {
+          columnArr.forEach(function (column, index) {
+            column.remove()
+          })
+          columnArr = []
+
+        }
+
+        deleteColums()
+
+        this.remove()
+        soundStage1.pause()
+        stage2()
+      }
+
+
+
+    }
 
     if (
       newX >= 0 &&
       newX <= 1160 - this.width &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision()
+      !this.checkEnemyCollision() /* &&
+      !this.checkBossCollision() */
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
@@ -47,7 +74,8 @@ class Player {
       newY >= 0 &&
       newY <= 795 - this.height &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision()
+      !this.checkEnemyCollision() /* &&
+      !this.checkBossCollision() */
     ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
@@ -55,8 +83,16 @@ class Player {
   }
 
   checkColumnCollision(posX, posY) {
+
+    let columns
+    if(this.stage === 1){
+      columns = [...columnArr]
+    } else {
+      columns = [...columnArrStage2]
+    }
+
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columns.some(function (column) {
       if (
         posX <= column.posX + column.width &&
         posY <= column.posY + column.height &&
@@ -79,7 +115,7 @@ class Player {
         player.posY + player.height >= enemy.posY
       ) {
         player.hp -= 1;
-        if (player.hp == 0) {
+        if (player.hp <= 0) {
           player.remove();
         }
         return true;
@@ -107,15 +143,31 @@ class Player {
     return enemyCollision;
   }
 
-  checkDoorCollision(posX, posY) {
+  checkBossCollision(posX, posY){
     if (
-      this.posX <= door.posX + door.width &&
-      this.posY <= door.posY + door.height &&
-      this.posX + this.width >= door.posX &&
-      this.posY + this.height >= door.posY
+      this.posX <= boss.posX + boss.width &&
+      this.posY <= boss.posY + boss.height &&
+      this.posX + this.width >= boss.posX &&
+      this.posY + this.height >= boss.posY
     ) {
-      window.alert('hey')
+      
+        player.remove();
+        return true;
+      
+    } else {
+      return false;
+    }
+  }
+
+  
+  checkDoorCollision() {
+    if (
+      this.posX + this.width >= 1155 && 
+      this.posY >= 360 && 
+      this.posY <= 420
+    ) {
       return true;
+      
     }
   }
 }

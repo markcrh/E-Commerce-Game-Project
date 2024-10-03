@@ -5,22 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeldon</title>
     <link rel="stylesheet" href="style.css">
-    <script src="mapElements.js" defer></script>
-    <script src="arrow.js" defer></script>
     <script src="boss.js" defer></script>
+    <script src="mapElements.js" defer></script>
+    <script src="fireball.js" defer></script>
+    <script src="arrow.js" defer></script>
     <script src="enemy.js" defer></script>
     <script src="player.js" defer></script>
     <script src="main.js" defer></script>
 </head>
 <body>
     <div id="screen">
+        <div class="wall-left"></div>
+        <div class="wall-up"></div>
+        <div class="wall-right"></div>
+        <div class="wall-down"></div>
         <div id="game">
         </div>
     </div>
         <div id="controlPanel">
-            <div id="title"></div>
-            <div id="controls"></div>
-            <div id="authors"></div>
+            <div id="title">
+                <h1>
+                    Zeldon
+                </h1>
+            </div>
+            <div id="controls">
+                <p>Movement</p>
+                    <div class="keyboard">
+                        <div class="top-row">
+                            <div class="key">
+                                <p>W</p>
+                            </div>
+                        </div>
+                        <div class="bottom-row">
+                            <div class="key">
+                                <p>A</p>
+                            </div>
+                            <div class="key">
+                                <p>S</p>
+                            </div>
+                            <div class="key">
+                                <p>D</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                <p>Shoot</p>
+                    <div class="spacebar">
+                    </div>
+            </div>
+            <div id="authors">
+                <span>
+                    Marcos Cruz, Abián Suárez, Jordan Cabrera
+                </span>
+            </div>
         </div>
    
     
