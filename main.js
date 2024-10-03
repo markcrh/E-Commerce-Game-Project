@@ -1,6 +1,7 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
 const gameOver = document.getElementById("gameOver")
+let isGameOver = false;
 let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
 let boss
@@ -47,7 +48,7 @@ function stage1() {
     });
   }
 
-  //addEnemy();
+  addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
