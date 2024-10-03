@@ -1,5 +1,6 @@
 class Arrow {
     static arrowCounter = 0;
+
     constructor(posX, posY, dirX, dirY) {
         this.height = 30;
         this.width = 20;
@@ -10,7 +11,7 @@ class Arrow {
         this.speed = 10;
         this.sprite = document.createElement("div");
         this.interval = setInterval(this.move.bind(this), 20)
-        Arrow.arrowCounter ++;
+        Arrow.arrowCounter++;
     }
 
     insert() {
@@ -22,16 +23,16 @@ class Arrow {
             this.posX = player.posX + player.width / 2 - this.width / 2
             this.posY = player.posY
             this.sprite.style.backgroundImage =
-              "url('./media/img/arrow-up.png')";
+                "url('./media/img/arrow-up.png')";
 
-        } else if (player.lastDirection == "down"){
+        } else if (player.lastDirection == "down") {
             this.sprite.style.height = 30 + "px";
             this.sprite.style.width = 20 + "px";
             this.posY = player.posY + player.height - this.height
-            this.posX = player.posX + player.width / 2 -this.width / 2
+            this.posX = player.posX + player.width / 2 - this.width / 2
             this.sprite.style.backgroundImage =
-              "url('./media/img/arrow-down.png')";
-        }else if (player.lastDirection == "right") {
+                "url('./media/img/arrow-down.png')";
+        } else if (player.lastDirection == "right") {
             this.sprite.style.height = 20 + "px";
             this.sprite.style.width = 30 + "px";
             this.posX = player.posX + player.width / 2 + this.width
@@ -40,10 +41,10 @@ class Arrow {
         } else if (player.lastDirection == "left") {
             this.sprite.style.height = 20 + "px";
             this.sprite.style.width = 30 + "px";
-            this.posX = player.posX 
+            this.posX = player.posX
             this.posY = player.posY + player.height / 2 - this.width / 2
             this.sprite.style.backgroundImage =
-              "url('./media/img/arrow-left.png')";
+                "url('./media/img/arrow-left.png')";
         }
 
         this.sprite.style.left = this.posX + "px";
@@ -80,11 +81,14 @@ class Arrow {
         if (this.checkEnemyCollision(newX, newY)) {
             this.remove()
         }
-        if (this.checkBossCollision(newX, newY)) {
-            this.remove()
-        }
 
+        if (player.stage == 2) {
+            if (this.checkBossCollision(newX, newY)) {
+                this.remove()
+            }
+        }
     }
+
     checkColumnCollision(posX, posY) {
 
         let columns
@@ -119,7 +123,7 @@ class Arrow {
                 posX + self.width >= enemy.posX &&
                 posY + self.height >= enemy.posY
             ) {
-                enemy.hp --;
+                enemy.hp--;
                 self.remove()
                 if (enemy.hp <= 0) {
                     enemy.remove()
@@ -133,25 +137,40 @@ class Arrow {
         return enemyCollision;
     }
 
+    win() {
+        if (isGameOver === false) {
+            isGameOver = true;
+            createButton("YOU WIN")
+            button.addEventListener('click', function () {
+                location.reload()
+            })
+            player.remove()
+            boss.remove()
+        }
+        return;
+    }
+
     checkBossCollision(posX, posY) {
         let self = this;
-            if (
-                posX <= boss.posX + boss.width &&
-                posY <= boss.posY + boss.height &&
-                posX + self.width >= boss.posX &&
-                posY + self.height >= boss.posY
-            ) {
-                boss.hp--;
-                self.remove()
-                if (boss.hp <= 0) {
-                    boss.remove()
-                    return true;
-                }
-            } else {
-                return false;
+        if (
+            posX <= boss.posX + boss.width &&
+            posY <= boss.posY + boss.height &&
+            posX + self.width >= boss.posX &&
+            posY + self.height >= boss.posY
+        ) {
+
+            boss.hp--;
+            self.remove()
+            if (boss.hp <= 0) {
+                clearInterval(fireballShooting);
+                self.win()
+                return true;
             }
+        } else {
+            return false;
+        }
     }
+
+
+
 }
-
-
-

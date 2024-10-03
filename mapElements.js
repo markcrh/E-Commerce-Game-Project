@@ -37,6 +37,10 @@ class Door {
     this.sprite.style.left = this.posX + "px";
     screen.appendChild(this.sprite);
   }
+  remove(){
+    screen.removeChild(this.sprite)
+
+  }
 }
 
 let soundStage1 = new Audio("/songs/last_guardian.mp3");

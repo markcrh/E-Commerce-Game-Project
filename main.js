@@ -1,5 +1,7 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
+const gameOver = document.getElementById("gameOver")
+let isGameOver = false;
 let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
 let boss
@@ -9,35 +11,28 @@ let columnArrStage2 = []
 const enemyArr = [];
 const arrowArr = [];
 const fireballArr = [];
+let fireballShooting
 
+document.addEventListener('DOMContentLoaded', function(){
+  soundIntro.play()
+  soundIntro.loop = true
+})
 
+let flag = false
 
-let flag = true
+function createButton(text){
+  const button = document.createElement("button")
+  button.setAttribute("id", "button")
+  button.innerText = text
+  map.appendChild(button)
+}
+
+const start = createButton("START")
 
 
 function stage1() {
-  
-  soundStage1.play()
-  soundStage1.loop = true
-  
- /*  const interval = setInterval(()=>{
-    console.log('running')
-   
-
-    if (player.checkDoorCollision()){
-      console.log('stop')
-      clearInterval(interval)
-      columnArr.forEach(function (column) {
-        column.remove()
-      })
-      player.remove()
-      return 
-    }
-
-  }, 1) */
-
-
   door.insert();
+  flag = true
 
   function addEnemy() {
     let enemy1 = new Enemy(225, 260);
@@ -91,10 +86,9 @@ function stage1() {
   
 }
 
-stage1();
-
 function stage2() {
 
+  door.remove()
   player = new Player(70, 373);
   player.stage = 2
   boss = new Boss(530, 323);
@@ -105,7 +99,7 @@ function stage2() {
     fireballArr.push(fireball.insert());
   }
 
-  const fireballShooting = setInterval(spawnFireballs, 500);
+  fireballShooting = setInterval(spawnFireballs, 500);
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -133,12 +127,15 @@ function stage2() {
       clearInterval(collisionDamage);
     }
   }
+
+  if (boss.hp <= 0){
+    console.log('win')
+  }
   setInterval(checkLiving, 5);
 
   soundStage2.play();
   soundStage2.loop = true;
 }
-
 
 function spawnArrow() {
   if (player.lastDirection == "up") {
@@ -217,3 +214,12 @@ window.addEventListener("keyup", function (event) {
       break;
   }
 });
+
+
+  button.addEventListener('click', function(){
+    map.removeChild(button)
+    soundIntro.pause()
+    soundStage1.play()
+    soundStage1.loop = true
+    stage1()
+  })
