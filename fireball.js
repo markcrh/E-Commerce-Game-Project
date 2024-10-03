@@ -50,6 +50,7 @@ class Fireball {
     }
     if (this.checkPlayerCollision(newX, newY)) {
       this.remove();
+      soundStage2.pause()
       player.remove()
     }
   }

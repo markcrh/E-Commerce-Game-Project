@@ -106,38 +106,4 @@ class Enemy {
       return false;
     }
   }
-/*   checkArrowCollision(posX, posY) {
-    let self = this;
-      if (
-        posX < arrow.posX + arrow.width &&
-        posY < arrow.posY + arrow.height &&
-        posX + self.width > arrow.posX &&
-        posY + self.height > arrow.posY
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    
-  } */
-
-  /* checkOtherEnemiesCollision() {
-    let self = this
-    let otherEnemies = enemyArr.filter(enemy => enemy !== this)
-    let collisions = otherEnemies.some(function (thisEnemy) {
-      if (
-        self.posX <= thisEnemy.posX + thisEnemy.width &&
-        self.posY <= thisEnemy.posY + thisEnemy.height &&
-        self.posX + self.width >= thisEnemy.posX &&
-        self.posY + self.height >= thisEnemy.posY
-      ) {
-
-      self.randomDir()
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return collisions;
-  } */
 }

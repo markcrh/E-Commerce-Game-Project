@@ -1,5 +1,6 @@
 const map = document.getElementById("game");
 const screen = document.getElementById("screen");
+const start = document.getElementById("start")
 let player = new Player(50, 700);
 const enemy = new Enemy(200, 200);
 let boss
@@ -10,34 +11,17 @@ const enemyArr = [];
 const arrowArr = [];
 const fireballArr = [];
 
+document.addEventListener('DOMContentLoaded', function(){
+  soundIntro.play()
+  soundIntro.loop = true
+})
 
-
-let flag = true
+let flag = false
 
 
 function stage1() {
-  
-  soundStage1.play()
-  soundStage1.loop = true
-  
- /*  const interval = setInterval(()=>{
-    console.log('running')
-   
-
-    if (player.checkDoorCollision()){
-      console.log('stop')
-      clearInterval(interval)
-      columnArr.forEach(function (column) {
-        column.remove()
-      })
-      player.remove()
-      return 
-    }
-
-  }, 1) */
-
-
   door.insert();
+  flag = true
 
   function addEnemy() {
     let enemy1 = new Enemy(225, 260);
@@ -53,7 +37,7 @@ function stage1() {
     });
   }
 
-  addEnemy();
+  //addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -90,8 +74,6 @@ function stage1() {
 
   
 }
-
-stage1();
 
 function stage2() {
 
@@ -138,7 +120,6 @@ function stage2() {
   soundStage2.play();
   soundStage2.loop = true;
 }
-
 
 function spawnArrow() {
   if (player.lastDirection == "up") {
@@ -217,3 +198,12 @@ window.addEventListener("keyup", function (event) {
       break;
   }
 });
+
+
+  start.addEventListener('click', function(){
+    map.removeChild(start)
+    soundIntro.pause()
+    soundStage1.play()
+    soundStage1.loop = true
+    stage1()
+  })

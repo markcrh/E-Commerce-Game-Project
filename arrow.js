@@ -80,8 +80,11 @@ class Arrow {
         if (this.checkEnemyCollision(newX, newY)) {
             this.remove()
         }
-        if (this.checkBossCollision(newX, newY)) {
-            this.remove()
+        if (player.stage2 == 2){
+
+            if (this.checkBossCollision(newX, newY)) {
+                this.remove()
+            }
         }
 
     }
@@ -120,6 +123,7 @@ class Arrow {
                 posY + self.height >= enemy.posY
             ) {
                 enemy.hp --;
+                enemy.style.filter = 'brightness(0) saturate(100%) hue-rotate(-120deg)'
                 self.remove()
                 if (enemy.hp <= 0) {
                     enemy.remove()

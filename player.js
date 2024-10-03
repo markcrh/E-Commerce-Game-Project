@@ -32,13 +32,11 @@ class Player {
   move() {
     let newX = this.posX + this.speed * this.dirX;
     let newY = this.posY + this.speed * this.dirY;
-
-    if (enemyArr.length == 0){
+    
+    if (enemyArr.length == 0 && flag == true){
+      
       door.sprite.style.backgroundImage = "url('./media/img/door-open.png')";
-
       if (this.checkDoorCollision()){
-        //limpiar todo lo relativo a stage 1
-        // ejecutar stage2
         function deleteColums() {
           columnArr.forEach(function (column, index) {
             column.remove()
@@ -54,16 +52,13 @@ class Player {
         stage2()
       }
 
-
-
     }
 
     if (
       newX >= 0 &&
       newX <= 1160 - this.width &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision() /* &&
-      !this.checkBossCollision() */
+      !this.checkEnemyCollision()
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
@@ -74,11 +69,14 @@ class Player {
       newY >= 0 &&
       newY <= 795 - this.height &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision() /* &&
-      !this.checkBossCollision() */
+      !this.checkEnemyCollision()
     ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
+    }
+
+    if (player.stage == 2){
+      this.checkBossCollision
     }
   }
 
@@ -116,6 +114,11 @@ class Player {
       ) {
         player.hp -= 1;
         if (player.hp <= 0) {
+          enemyArr.forEach(function (enemy){
+            clearInterval(enemy.interval)
+            enemy.remove()
+          })          
+          soundStage1.pause()
           player.remove();
         }
         return true;
@@ -143,14 +146,14 @@ class Player {
     return enemyCollision;
   }
 
-  checkBossCollision(posX, posY){
+  checkBossCollision(){
     if (
       this.posX <= boss.posX + boss.width &&
       this.posY <= boss.posY + boss.height &&
       this.posX + this.width >= boss.posX &&
       this.posY + this.height >= boss.posY
     ) {
-      
+        soundStage2.pause()
         player.remove();
         return true;
       

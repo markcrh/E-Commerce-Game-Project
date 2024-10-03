@@ -9,6 +9,32 @@
     src: url(./media/font/Triforce.ttf);
 }
 
+#intro {
+    background-color: black;
+    width: 850px;
+    height: 500px;
+    display: absolute;
+    margin-left: 155px;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start {
+    font-family: zeldon;
+    display: absolute;
+    color: red;
+    font-size: 30px;
+    padding: 10px;
+    background-color: black;
+    border: 1px solid white;
+    scale: 5;
+    margin-top: 350px;
+    margin-left: 537px;
+}
+
+
 #screen {
     background-image: url('./media/img/column.png');
     background-size:70px;
@@ -53,9 +79,6 @@
     background-size: contain;
 }
 
-#intro {
-    
-}
 
 #game {
     background-image: url('./media/img/floor.png');
