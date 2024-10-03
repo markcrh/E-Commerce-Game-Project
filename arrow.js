@@ -1,4 +1,5 @@
 class Arrow {
+    static arrowCounter = 0;
     constructor(posX, posY, dirX, dirY) {
         this.height = 30;
         this.width = 20;
@@ -8,12 +9,13 @@ class Arrow {
         this.dirX = dirX;
         this.speed = 10;
         this.sprite = document.createElement("div");
-        this.interval = setInterval(this.move.bind(this), 30)
+        this.interval = setInterval(this.move.bind(this), 20)
+        Arrow.arrowCounter ++;
     }
 
     insert() {
         this.sprite.setAttribute("class", "arrow");
-        
+
         if (player.lastDirection == "up") {
             this.sprite.style.height = 30 + "px";
             this.sprite.style.width = 20 + "px";
@@ -43,7 +45,7 @@ class Arrow {
             this.sprite.style.backgroundImage =
               "url('./media/img/arrow-left.png')";
         }
-       
+
         this.sprite.style.left = this.posX + "px";
         this.sprite.style.top = this.posY + "px";
         map.appendChild(this.sprite);
@@ -53,13 +55,14 @@ class Arrow {
         map.removeChild(this.sprite)
         arrowArr.shift()
         clearInterval(this.interval)
+        Arrow.arrowCounter--
     }
 
     move() {
         let newX = this.posX + this.speed * this.dirX;
         let newY = this.posY + this.speed * this.dirY;
-        
-        if (newY >= 0 && newY <= 795 - this.height){
+
+        if (newY >= 0 && newY <= 795 - this.height) {
             this.posY = newY;
             this.sprite.style.top = this.posY + "px";
         } else {
@@ -71,10 +74,10 @@ class Arrow {
         } else {
             this.remove()
         }
-        if (this.checkColumnCollision(newX, newY)){
-           this.remove()
+        if (this.checkColumnCollision(newX, newY)) {
+            this.remove()
         }
-        if (this.checkEnemyCollision(newX, newY)){
+        if (this.checkEnemyCollision(newX, newY)) {
             this.remove()
         }
 
@@ -99,29 +102,28 @@ class Arrow {
 
     checkEnemyCollision(posX, posY) {
         let self = this;
-        let enemyCollision = enemyArr.some(function (enemy) {
+        console.log('in arrow')
+        let enemyCollision = enemyArr.forEach(function (enemy, index) {
             if (
                 posX <= enemy.posX + enemy.width &&
                 posY <= enemy.posY + enemy.height &&
                 posX + self.width >= enemy.posX &&
                 posY + self.height >= enemy.posY
             ) {
-                enemyArr.forEach((index) => {
-                    index.hp -= 1
-                    if (index.hp == 0){
-                        index.remove()
-                        enemyArr.splice(index, 1)
-                        console.log(enemyArr.length)
-                        
-                    }
-                })
-                return true;
+                enemy.hp --;
+                self.remove()
+                if (enemy.hp <= 0) {
+                    enemy.remove()
+                    enemyArr.splice(index, 1)
+                    console.log(enemyArr.length)
+                    return true;
+                }
             } else {
                 return false;
             }
-        });
+        })
         return enemyCollision;
-    } 
+    }
 }
 
 

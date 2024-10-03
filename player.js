@@ -87,7 +87,7 @@ class Player {
         player.posY + player.height >= enemy.posY
       ) {
         player.hp -= 1;
-        if (player.hp == 0) {
+        if (player.hp <= 0) {
           player.remove();
         }
         return true;
@@ -140,6 +140,7 @@ class Player {
     ) {
       console.log('door')
       return true;
+      
     }
   }
 }

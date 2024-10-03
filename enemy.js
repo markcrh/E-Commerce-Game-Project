@@ -106,7 +106,7 @@ class Enemy {
       return false;
     }
   }
-  checkArrowCollision(posX, posY) {
+/*   checkArrowCollision(posX, posY) {
     let self = this;
       if (
         posX < arrow.posX + arrow.width &&
@@ -119,7 +119,7 @@ class Enemy {
         return false;
       }
     
-  }
+  } */
 
   /* checkOtherEnemiesCollision() {
     let self = this
