@@ -8,6 +8,7 @@ class Player {
     this.width = 40;
     this.height = 40;
     this.speed = 2;
+    this.stage = 1
     this.lastDirection = "";
     this.sprite = document.createElement("div");
     this.playerInterval = setInterval(this.move.bind(this), 10);
@@ -33,8 +34,27 @@ class Player {
     let newY = this.posY + this.speed * this.dirY;
 
     if (enemyArr.length == 0){
-      this.checkDoorCollision();
       door.sprite.style.backgroundImage = "url('./media/img/door-open.png')";
+
+      if (this.checkDoorCollision()){
+        //limpiar todo lo relativo a stage 1
+        // ejecutar stage2
+        function deleteColums() {
+          columnArr.forEach(function (column, index) {
+            column.remove()
+          })
+          columnArr = []
+
+        }
+
+        deleteColums()
+
+        this.remove()
+        soundStage1.pause()
+        stage2()
+      }
+
+
 
     }
 
@@ -42,8 +62,8 @@ class Player {
       newX >= 0 &&
       newX <= 1160 - this.width &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision() &&
-      !this.checkBossCollision()
+      !this.checkEnemyCollision() /* &&
+      !this.checkBossCollision() */
     ) {
       this.posX = newX;
       this.sprite.style.left = this.posX + "px";
@@ -54,8 +74,8 @@ class Player {
       newY >= 0 &&
       newY <= 795 - this.height &&
       !this.checkColumnCollision(newX, newY) &&
-      !this.checkEnemyCollision() &&
-      !this.checkBossCollision()
+      !this.checkEnemyCollision() /* &&
+      !this.checkBossCollision() */
     ) {
       this.posY = newY;
       this.sprite.style.top = this.posY + "px";
@@ -63,8 +83,16 @@ class Player {
   }
 
   checkColumnCollision(posX, posY) {
+
+    let columns
+    if(this.stage === 1){
+      columns = [...columnArr]
+    } else {
+      columns = [...columnArrStage2]
+    }
+
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columns.some(function (column) {
       if (
         posX <= column.posX + column.width &&
         posY <= column.posY + column.height &&
@@ -135,10 +163,9 @@ class Player {
   checkDoorCollision() {
     if (
       this.posX + this.width >= 1155 && 
-      this.posY >= 370 && 
+      this.posY >= 360 && 
       this.posY <= 420
     ) {
-      console.log('door')
       return true;
       
     }

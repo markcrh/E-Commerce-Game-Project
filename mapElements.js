@@ -14,6 +14,11 @@ class Column {
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
   }
+  remove(){
+    map.removeChild(this.sprite)
+  }
+
+
 }
 
 class Door {
@@ -33,3 +38,7 @@ class Door {
     screen.appendChild(this.sprite);
   }
 }
+
+let soundStage1 = new Audio("/songs/last_guardian.mp3");
+let soundStage2 = new Audio("/songs/n64_zelda_ganondorf.mp3");
+let soundIntro = new Audio("/songs/ocarina_of_time.mp3");

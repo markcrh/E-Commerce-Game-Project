@@ -1,6 +1,6 @@
 class Boss {
   constructor(posX, posY) {
-    this.hp = 10;
+    this.hp = 6;
     this.posX = posX;
     this.posY = posY;
     this.dirX = 0;
@@ -20,6 +20,10 @@ class Boss {
     this.sprite.style.top = this.posY + "px";
     this.sprite.style.left = this.posX + "px";
     map.appendChild(this.sprite);
+  }
+  remove() {
+    map.removeChild(this.sprite)
+    clearInterval(this.interval)
   }
 
   move() {
@@ -74,7 +78,7 @@ class Boss {
 
   checkColumnCollision(posX, posY) {
     let self = this;
-    let columnCollision = columnArr.some(function (column) {
+    let columnCollision = columnArrStage2.some(function (column) {
       if (
         posX < column.posX + column.width &&
         posY < column.posY + column.height &&
