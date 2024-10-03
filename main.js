@@ -139,7 +139,6 @@ function stage2() {
   soundStage2.loop = true;
 }
 
-//stage2()
 
 function spawnArrow() {
   if (player.lastDirection == "up") {
