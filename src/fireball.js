@@ -10,6 +10,12 @@ class Fireball {
     this.sprite = document.createElement("div");
     this.interval = setInterval(this.move.bind(this), 20);
   }
+  
+  remove() {
+    map.removeChild(this.sprite);
+    fireballArr.shift();
+    clearInterval(this.interval);
+  }
 
   insert() {
     this.sprite.setAttribute("class", "fireball");
@@ -21,12 +27,6 @@ class Fireball {
     this.sprite.style.left = this.posX + "px";
     this.sprite.style.top = this.posY + "px";
     map.appendChild(this.sprite);
-  }
-
-  remove() {
-    map.removeChild(this.sprite);
-    fireballArr.shift();
-    clearInterval(this.interval);
   }
 
   move() {

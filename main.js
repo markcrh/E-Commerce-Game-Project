@@ -1,8 +1,13 @@
-const map = document.getElementById("game");
+const game = document.getElementById("game");
 const screen = document.getElementById("screen");
 const gameOver = document.getElementById("gameOver")
 let isGameOver = false;
-let player = new Player(50, 700);
+
+import Player from "./src/player";
+
+const player = new Player()
+player.insert(screen)
+
 const enemy = new Enemy(200, 200);
 let boss
 const door = new Door();
@@ -24,7 +29,7 @@ function createButton(text){
   const button = document.createElement("button")
   button.setAttribute("id", "button")
   button.innerText = text
-  map.appendChild(button)
+  game.appendChild(button)
 }
 
 const start = createButton("START")
@@ -217,7 +222,7 @@ window.addEventListener("keyup", function (event) {
 
 
   button.addEventListener('click', function(){
-    map.removeChild(button)
+    game.removeChild(button)
     soundIntro.pause()
     soundStage1.play()
     soundStage1.loop = true
