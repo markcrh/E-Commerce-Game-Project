@@ -23,8 +23,10 @@ class Enemy {
   }
 
   remove() {
+    if (map.contains(this.sprite)){
     map.removeChild(this.sprite)
     clearInterval(this.interval)
+    }
   }
 
   move() {

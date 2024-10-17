@@ -48,7 +48,7 @@ function stage1() {
     });
   }
 
-  addEnemy();
+  //addEnemy();
 
   function addColumns() {
     let column1 = new Column(200, 130, 100, 100);
@@ -138,19 +138,20 @@ function stage2() {
 }
 
 function spawnArrow() {
-  if (player.lastDirection == "up") {
-    const arrow = new Arrow(player.posX, player.posY, 0, -1);
-    arrowArr.push(arrow.insert());
-  } else if (player.lastDirection == "down") {
-    const arrow = new Arrow(player.posX, player.posY, 0, 1);
-    arrowArr.push(arrow.insert());
-  } else if (player.lastDirection == "right") {
-    const arrow = new Arrow(player.posX, player.posY, 1, 0);
-    arrowArr.push(arrow.insert());
-  } else if (player.lastDirection == "left") {
-    const arrow = new Arrow(player.posX, player.posY, -1, 0);
-    arrowArr.push(arrow.insert());
-  }
+
+    if (player.lastDirection == "up") {
+      const arrow = new Arrow(player.posX, player.posY, 0, -1);
+      arrowArr.push(arrow.insert());
+    } else if (player.lastDirection == "down") {
+      const arrow = new Arrow(player.posX, player.posY, 0, 1);
+      arrowArr.push(arrow.insert());
+    } else if (player.lastDirection == "right") {
+      const arrow = new Arrow(player.posX, player.posY, 1, 0);
+      arrowArr.push(arrow.insert());
+    } else if (player.lastDirection == "left") {
+      const arrow = new Arrow(player.posX, player.posY, -1, 0);
+      arrowArr.push(arrow.insert());
+    }
 }
 
 window.addEventListener("keydown", function (event) {
@@ -188,9 +189,10 @@ window.addEventListener("keydown", function (event) {
       break;
 
     case " ":
-      if (Arrow.arrowCounter <= 3) {
-        spawnArrow();
-      }
+        if (Arrow.arrowCounter <= 3) {
+          spawnArrow();
+        }
+      
       break;
   }
 });

@@ -24,9 +24,11 @@ class Fireball {
   }
 
   remove() {
+    if (map.contains(this.sprite)){
     map.removeChild(this.sprite);
     fireballArr.shift();
     clearInterval(this.interval);
+    }
   }
 
   move() {

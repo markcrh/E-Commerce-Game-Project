@@ -53,10 +53,12 @@ class Arrow {
     }
 
     remove() {
-        map.removeChild(this.sprite)
-        arrowArr.shift()
-        clearInterval(this.interval)
-        Arrow.arrowCounter--
+        if (map.contains(this.sprite)){
+            map.removeChild(this.sprite)
+            clearInterval(this.interval)
+            Arrow.arrowCounter--
+            arrowArr.shift()
+        }
     }
 
     move() {
@@ -138,7 +140,7 @@ class Arrow {
     }
 
     win() {
-        if (isGameOver === false) {
+        if (!isGameOver) {
             isGameOver = true;
             createButton("YOU WIN")
             button.addEventListener('click', function () {
@@ -146,6 +148,7 @@ class Arrow {
             })
             player.remove()
             boss.remove()
+            fireballArr.length = 0;
         }
         return;
     }

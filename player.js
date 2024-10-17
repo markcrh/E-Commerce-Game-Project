@@ -24,9 +24,11 @@ class Player {
   }
 
   remove() {
+    if (map.contains(this.sprite)){
     map.removeChild(this.sprite);
     this.hp = 0
     clearInterval(this.playerInterval);
+    }
   }
 
   move() {
